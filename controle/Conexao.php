@@ -13,7 +13,7 @@ class Conexao
         $this->servidor = "localhost";
         $this->usuario = "root";
         $this->senha = "";
-        $this->database = "tfc";
+        $this->database = "unifeob_pi";
 
 		try
 		{
