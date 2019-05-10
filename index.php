@@ -68,8 +68,6 @@
     							</div>
     						</div>
     						<div class="col-xs-4 col-sm-8 top-panel-right">
-    							<a href="#" class="about">about</a>
-    							<a href="index_v1.php" class="style1"></a>
     							<ul class="nav navbar-nav pull-right panel-menu">
     								<li class="hidden-xs">
     									<a href="index.php" class="modal-link">
@@ -164,11 +162,12 @@
     							<span class="hidden-xs">Registrar</span>
     						</a>
     						<ul class="dropdown-menu">
-    							<li><a class="ajax-link" href="ajax\registros\registro_paciente.php">Pacientes</a></li>
+    							<li><a class="ajax-link" href="ajax\registros\paciente.php">Pacientes</a></li>
     						</ul>
     					</li>
     				</ul>
     			</div>
+				
     			<!--Start Content-->
     			<div id="content" class="col-xs-12 col-sm-10">
     				<div id="about">
@@ -183,12 +182,32 @@
     				</div>
     				<div class="preloader">
     					<img src="img/devoops_getdata.gif" class="devoops-getdata" alt="preloader" />
-    				</div>
+					</div>
+					<div class="row">
+						<div id="breadcrumb" class="col-xs-12">
+							<a href="#" class="show-sidebar">
+								<i class="fa fa-bars"></i>
+							</a>
+							<ol class="breadcrumb pull-left">
+								<li><a href="index.html">Dashboard</a></li>
+								<li><a href="#">Registros</a></li>
+								<li><a href="#">Pacientes</a></li>
+							</ol>
+							<div id="social" class="pull-right">
+								<a href="#"><i class="fa fa-google-plus"></i></a>
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+								<a href="#"><i class="fa fa-youtube"></i></a>
+							</div>
+						</div>
+					</div>
     				<div id="ajax-content"></div>
     			</div>
     			<!--End Content-->
     		</div>
     	</div>
+
     	<!--End Container-->
     	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     	<!--<script src="http://code.jquery.com/jquery.js"></script>-->
