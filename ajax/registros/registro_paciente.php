@@ -107,37 +107,9 @@
 							<input type="text" id="input_time" class="form-control" placeholder="Time">
 							<span class="fa fa-clock-o txt-danger form-control-feedback"></span>
 						</div>
-						<label class="col-sm-2 control-label">Disabled input</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control" placeholder="No info" data-toggle="tooltip" data-placement="top" title="Hello world!" disabled>
-						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="form-styles">Relative Sizing</label>
-						<div class="col-sm-10">
-							<div class="row">
-								<div class="col-sm-2">
-									<input class="form-control" id="form-styles" placeholder=".col-sm-2" type="text">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-sm-12">
-									<p><small>Dynamic resizing col</small></p>
-									<div class="progress progress-ui">
-										  <div class="progress-bar progress-bar-success slider-style slider-range-min" style="width: 100%;"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="form-styles">Textarea</label>
-						<div class="col-sm-10">
-								<textarea class="form-control" rows="5" id="wysiwig_simple"></textarea>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-sm-2 control-label" for="form-styles">Extreme Textarea</label>
+						<label class="col-sm-2 control-label" for="form-styles">Anotações</label>
 						<div class="col-sm-10">
 								<textarea class="form-control" rows="5" id="wysiwig_full"></textarea>
 						</div>
@@ -146,39 +118,38 @@
 						<label class="col-sm-2 control-label">Input groups</label>
 						<div class="col-sm-2">
 							<div class="input-group">
-							  <span class="input-group-addon"><i class="fa fa-github-square"></i></span>
-							  <input type="text" class="form-control" placeholder="GitHub">
+							  <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+							  <input type="text" class="form-control" placeholder="Facebook">
 							</div>
 						</div>
 						<div class="col-sm-2">
 							<div class="input-group">
-							  <input type="text" class="form-control" placeholder="Group">
-							  <span class="input-group-addon"><i class="fa fa-group"></i></span>
+							  <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
+							  <input type="text" class="form-control" placeholder="Instagram">
 							</div>
 						</div>
 						<div class="col-sm-2">
 							<div class="input-group">
-							  <span class="input-group-addon"><i class="fa fa-money"></i></span>
-							  <input type="text" class="form-control" placeholder="Money">
-							  <span class="input-group-addon"><i class="fa fa-usd"></i></span>
+							  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+							  <input type="text" class="form-control" placeholder="Email">
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+							  <input type="text" class="form-control" placeholder="RG">
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="input-group">
+							  <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+							  <input type="text" class="form-control" placeholder="CPF">
 							</div>
 						</div>
 					</div>
 					<div class="clearfix"></div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-2">
-							<button type="cancel" class="btn btn-default btn-label-left">
-							<span><i class="fa fa-clock-o txt-danger"></i></span>
-								Cancel
-							</button>
-						</div>
-						<div class="col-sm-2">
-							<button type="submit" class="btn btn-warning btn-label-left">
-							<span><i class="fa fa-clock-o"></i></span>
-								Send later
-							</button>
-						</div>
-						<div class="col-sm-2">
 							<button type="submit" class="btn btn-primary btn-label-left">
 							<span><i class="fa fa-clock-o"></i></span>
 								Submit
@@ -194,7 +165,7 @@
 <script type="text/javascript">
 // Run Estado civil
 function DemoSelect2(){
-	$('#s2_with_tag').select2({placeholder: "Select OS"});
+	$('#s2_with_tag').select2({placeholder: "Selecione o estado civil"});
 	$('#s2_country').select2();
 }
 // Run timepicker
