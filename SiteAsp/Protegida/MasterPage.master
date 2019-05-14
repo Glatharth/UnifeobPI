@@ -1,0 +1,274 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    <style>
+
+        body {
+            user-select: none;
+            background:#535353;
+        }
+
+        #top {
+            font-size: 35px;
+            text-align: center;
+            user-select: none;
+            color: white;
+        }
+
+        #container {
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .itens {
+            width: 25%;
+            float: left;
+            height: 225px;
+            margin: 0 auto;
+            padding-bottom: 10px;
+        }
+
+        .musica {
+            width: 45%;
+            background-color: transparent;
+            padding-top: 33%;
+        }
+
+        .disney {
+            width: 190px;
+            height: 190px;
+            border: 19px solid black;
+            border-radius: 50%;
+            text-align: center;
+            user-select: none;
+            z-index:1;
+            background-color:black
+        }
+
+        .space {
+            padding-top: 1px;
+            z-index:1;
+            margin-top:-200px;
+        }
+
+        .botao{
+            width:30px;
+            height:30px;
+            z-index:3;
+            user-select: none;
+            cursor:pointer;
+            margin:0 auto;
+
+        }
+
+        .bb{
+            color:whitesmoke;
+            user-select: none;
+        }
+
+        .amor{
+            background-color:black;
+            border-radius: 55%;
+        }
+
+        .amor2{
+            background-color:black;
+        }
+
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.title {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 30px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  width:20%;
+  float: left;
+}
+
+.usubtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  width:20%;
+  float: right;
+  text-align:left;
+}
+
+
+.doorbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  width:3%;
+  float: right;
+  text-align:right;
+  padding-right:2%;
+}
+
+.doorbtn:hover{
+    background-color: #444;
+}
+
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+  border-bottom:5px solid #111;
+  height: 50px;
+}
+
+.sharch{
+  font-size: 20px;
+  background-color: #111;
+  color: white;
+  padding: 15px 30px 15px 35px;
+  border: none;
+  width:40%;
+  float:left;
+}
+
+.box{
+    width:70%;
+    float:left;
+    height:20px;
+    font-size:20px;
+    text-align:center;
+}
+
+.btn{
+    width:25%;
+    float:left;
+    height:26px;
+    font-size:17px;
+}
+
+.space2{
+    height:50px;
+    width:15%; 
+    float:left;
+}
+
+        </style>
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body ondragstart='return false' >
+    <form id="form1" runat="server">
+    
+         <div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <div class="title">Conteudo</div>
+  <a href="Default.aspx">Inicio</a>
+  <a href="Grafico.aspx">Grafico</a>
+
+
+  
+</div>
+
+<div id="main">
+
+  <div onclick="openNav()" class="openbtn">☰ MENU</div>
+  
+   <div id="Sair" runat="server" class="doorbtn" OnClick="Sair_Click" >🚪</div>
+   <div class="usubtn">♞ PAULO</div>
+
+
+
+    
+
+
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+    
+    </div>
+    
+    </form>
+
+<script>
+
+        function openNav() {
+
+            if (document.getElementById("mySidebar").style.width == "0px" || document.getElementById("mySidebar").style.width == "" ) {
+                document.getElementById("mySidebar").style.width = "25%";
+                document.getElementById("main").style.marginLeft = "250px";
+            }
+
+            else {
+                closeNav();
+            }
+    
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+        }
+
+
+
+</script>
+
+</body>
+</html>
