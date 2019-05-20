@@ -232,6 +232,7 @@
 
   <div onclick="openNav()" class="openbtn">☰ MENU</div>
 
+
     <asp:Button ID="Sair" CssClass="doorbtn" runat="server" Text="🚪" OnClick="Sair_Click1" />
   
 
@@ -239,7 +240,7 @@
 
     <asp:Button ID="ButtonUsu" runat="server" Text="" CssClass="usubtn"/>
 
-
+  
 
     
 

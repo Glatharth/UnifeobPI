@@ -10,6 +10,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
         string nome = "";
         nome = "" + Session["id"];
 
@@ -17,9 +18,10 @@ public partial class MasterPage : System.Web.UI.MasterPage
     }
 
     protected void Sair_Click1(object sender, EventArgs e)
-    {
         FormsAuthentication.SignOut();
         Session.Abandon();
         Session.Clear();
+
     }
+
 }

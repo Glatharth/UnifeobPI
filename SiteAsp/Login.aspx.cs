@@ -48,7 +48,9 @@ public partial class _Default : System.Web.UI.Page
             //verificar se o nome e a senha estão corretos
             if (TextBoxEmail.Text == email && TextBoxSenha.Text == senha)
             {
+
                 Session["id"] = nome; //Nome do Usuario
+
                 //autenticar o usuario (importar o System.Web.Security)
 
                 FormsAuthentication.RedirectFromLoginPage(TextBoxEmail.Text, true);
