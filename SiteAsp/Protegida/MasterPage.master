@@ -231,9 +231,13 @@
 <div id="main">
 
   <div onclick="openNav()" class="openbtn">☰ MENU</div>
+
+    <asp:Button ID="Sair" CssClass="doorbtn" runat="server" Text="🚪" OnClick="Sair_Click1" />
   
-   <div id="Sair" runat="server" class="doorbtn" OnClick="Sair_Click" >🚪</div>
-   <div class="usubtn">♞ PAULO</div>
+
+
+
+    <asp:Button ID="ButtonUsu" runat="server" Text="" CssClass="usubtn"/>
 
 
 
@@ -265,7 +269,6 @@
             document.getElementById("mySidebar").style.width = "0";
             document.getElementById("main").style.marginLeft= "0";
         }
-
 
 
 </script>
