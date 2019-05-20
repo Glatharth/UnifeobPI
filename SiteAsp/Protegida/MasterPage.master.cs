@@ -11,19 +11,17 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        string nome = "";
+        nome = "" + Session["id"];
+
+        ButtonUsu.Text = "♞ " + nome;
     }
 
-
-
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-    }
-
-    public void Sair_Click()
-    {
+    protected void Sair_Click1(object sender, EventArgs e)
         FormsAuthentication.SignOut();
         Session.Abandon();
         Session.Clear();
-        Response.Redirect("~/Login.aspx", true);
+
     }
+
 }
