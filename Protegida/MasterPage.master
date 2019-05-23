@@ -147,6 +147,7 @@
   width:20%;
   float: right;
   text-align:left;
+  border: none;
 }
 
 
@@ -161,6 +162,7 @@
   float: right;
   text-align:right;
   padding-right:2%;
+  border: none;
 }
 
 .doorbtn:hover{
@@ -223,6 +225,8 @@
   <div class="title">Conteudo</div>
   <a href="Default.aspx">Inicio</a>
   <a href="Grafico.aspx">Grafico</a>
+  <a href="Pacientes.aspx">Pacientes</a>
+  <a href="Formularios.aspx">Formularios</a>
 
 
   
@@ -257,7 +261,7 @@
 
             if (document.getElementById("mySidebar").style.width == "0px" || document.getElementById("mySidebar").style.width == "" ) {
                 document.getElementById("mySidebar").style.width = "25%";
-                document.getElementById("main").style.marginLeft = "250px";
+                document.getElementById("main").style.marginLeft = "25%";
             }
 
             else {
