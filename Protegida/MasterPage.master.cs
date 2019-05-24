@@ -17,7 +17,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         ButtonUsu.Text = "♞ " + nome;
     }
 
-    protected void Sair_Click1(object sender, EventArgs e)
+    protected void Sair_Click1(object sender, EventArgs e) { 
         FormsAuthentication.SignOut();
         Session.Abandon();
         Session.Clear();
