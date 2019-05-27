@@ -34,6 +34,11 @@
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
+                    <div style="display:none" class="wrap-input100 validate-input" id="DivLabel" runat="server">
+                        <asp:Label ID="LabelMsg" runat="server" class="input100" style="padding-top: 15px;"></asp:Label>
+						<span  data-placeholder="&#xe80f;"></span>
+					</div>
+
 					<div class="container-login100-form-btn m-t-32">
 
                         <asp:Button ID="ButtonLogin" runat="server" Text="Login" class="login100-form-btn" OnClick="ButtonLogin_Click" />

@@ -59,14 +59,16 @@ public partial class _Default : System.Web.UI.Page
 
             else
             {
-                
+                DivLabel.Style["Display"] = "block";
+                LabelMsg.Text = "Usuario ou senha invalidos!";
             }
 
         }
 
         else
         {
-            
+            DivLabel.Style["Display"] = "block";
+            LabelMsg.Text = "Preencha todos os campos!";
         }
 
     }
