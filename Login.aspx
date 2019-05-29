@@ -19,9 +19,11 @@
         <div class="limiter">
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
-				<span class="login100-form-title p-b-41">
-					Entrar
+				
+                <span class="login100-form-title p-b-41">
+					Entrar / <a href="Cadastro.aspx"  style="text-decoration:none; font-family:Ubuntu-Bold; font-size: 25px;color: #d1cece; text-transform:uppercase;">Cadastrar</a>
 				</span>
+                
 				<div class="login100-form validate-form p-b-33 p-t-5">
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
@@ -38,6 +40,7 @@
                         <asp:Label ID="LabelMsg" runat="server" class="input100" style="padding-top: 15px;"></asp:Label>
 						<span  data-placeholder="&#xe80f;"></span>
 					</div>
+
 
 					<div class="container-login100-form-btn m-t-32">
 

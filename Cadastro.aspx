@@ -20,7 +20,7 @@
 		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				<span class="login100-form-title p-b-41">
-					Cadastro
+					Cadastrar / <a href="Login.aspx"  style="text-decoration:none; font-family:Ubuntu-Bold; font-size: 25px;color: #d1cece; text-transform:uppercase;">Entrar</a>
 				</span>
 				<div class="login100-form validate-form p-b-33 p-t-5">
 
