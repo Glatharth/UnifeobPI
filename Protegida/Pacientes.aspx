@@ -7,7 +7,9 @@
     <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1">
         <ItemTemplate>
 
-            <div style="margin:100px auto; text-align:center">
+<a href="Detalhe_Paciente.aspx?id=<%#Eval("id")%>" style="text-decoration:none; color:black; font-size:20px">
+
+    <div style="margin:100px auto; text-align:center">
 
 <div style="width:25%; float:left; margin-top:20px; margin-left:20px;">
     <div style="width:90%; height:200px;border:3px solid black;">
@@ -19,6 +21,8 @@
     </div>
 </div>
                 </div>
+
+</a>
 
         </ItemTemplate>
      </asp:ListView>

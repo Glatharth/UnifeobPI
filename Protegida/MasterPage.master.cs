@@ -21,7 +21,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         FormsAuthentication.SignOut();
         Session.Abandon();
         Session.Clear();
-
+        Response.Redirect("~/Default.aspx");
     }
 
 }

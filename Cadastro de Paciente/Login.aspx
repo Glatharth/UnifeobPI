@@ -22,6 +22,8 @@
 <body>
     <form id="form1" runat="server">
 
+        <div style="background-image:url('img/05.jpg'); background-repeat:no-repeat;background-size:cover; width:100%; margin:0 auto">
+
     <div class="container">
 
         <div style="width:100%; margin:100px auto">
@@ -140,7 +142,7 @@
                 </div>
             </div>
         </div>
-    
+  </div> 
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <script src="js/jquery.backstretch.js" type="text/javascript"></script>
