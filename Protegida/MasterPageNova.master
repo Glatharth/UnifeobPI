@@ -1,47 +1,43 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<!-- startbootstrap-sb-admin-gh-pages -->
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPageNova.master.cs" Inherits="Protegida_MasterPageNova" %>
 
-<head>
-    <title>Document</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
     <!-- Jquery -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
     <!-- Bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
-        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous">
-    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="../css/MasterPage.css">
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
-
 <body>
-
-
-    <header>
-        <nav class="navbar navbar-expand navbar-dark bg-dark static-top" style="padding: 0px; height: 10%;">
+    <form id="form1" runat="server">
+    
+        <header>
+        <nav class="navbar navbar-expand navbar-dark static-top" style="padding: 0px; height: 10%; background-color:black">
             <div class="siteName">
-                <h1>Site</h1>
+                <h1>Unifeob</h1>
             </div>
             <div>
-                <button class="btn btn-link btn-sm text-white order-1 order-sm-0">
+                <div class="btn btn-link btn-sm text-white order-1 order-sm-0" onclick="menu()">
                     <i class="fas fa-bars"></i>
-                </button>
+                </div>
             </div>
-            <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <div class="input-group">
                     <div class="input-group">
                         <input type="search" class="form-control" placeholder="Search for..." aria-label="Search"
@@ -53,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
             <div>
                 <ul class="navbar-nav ml-auto ml-md-0">
                     <li class="nav-item dropdown no-arrow mx-1">
@@ -98,44 +94,55 @@
             </div>
         </nav>
     </header>
-    
-    
-    <nav class="sidenav">
+
+    <nav class="sidenav" id="nav">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                <a href="#" data-toggle="collapse" aria-expanded="false">
                     <i class="fas fa-home"></i>
-                    Home
+                    Inicio
                 </a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a class="nav-link" href="#">Home 1</a>
-                    </li>
-                </ul>
+
             </li>
             <li class="nav-item">
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                     <i class="fas fa-copy"></i>
-                    Pages
+                    Paginas
                 </a>
                 <ul class="collapse list-unstyled" id="pageSubmenu">
                     <li>
-                        <a class="nav-link" href="#">Page 1</a>
+                        <a class="nav-link" href="#">Pacientes</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="#">Formularios</a>
                     </li>
                 </ul>
             </li>
             <a href="#">
                 <i class="fas fa-briefcase"></i>
-                About
+                Sobre
             </a>
         </ul>
     </nav>
-    <section class="container">
-        <!-- Conteudo -->
-    </section>
 
-    <footer>
-        <span>Trabalho de PI</span>
-    </footer>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+
+
+        <script>
+
+            function menu() {
+
+                if (document.getElementById('nav').style.display == "none") {
+                    document.getElementById('nav').style.display = "block";
+                }
+                else {
+                    document.getElementById('nav').style.display = "none";
+                }
+                
+            }
+
+        </script>
+
+    </form>
 </body>
 </html>
