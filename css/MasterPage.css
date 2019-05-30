@@ -1,18 +1,25 @@
-body {
-
-}
+/* body {
+    
+} */
 
 footer {
     background: rgba(0, 0, 0, 0.521);
-    padding: 3em;
+    padding: 0.5em;
     bottom: 100%;
-
 }
 
+section {
+    height: 100%;
+    margin-left: 180px; 
+    width: 100%;
+}
 
 .siteName, .sidenav {
-    width: 170px;
-    background-color: #dc3545;
+    /* max-width: 200px;
+    min-width: 150px;
+    width: 15%; */
+    width: 180px;
+    background-color: #888686;
     height: 100%;
     padding: 0;
     margin: 0;
@@ -29,7 +36,7 @@ footer {
 .sidenav {
     height: 100%;
     /* Full-height: remove this if you want "auto" height */
-    position: absolute;
+    position: fixed;
     /* Fixed Sidebar (stay in place on scroll) */
     /* z-index: 1; Stay on top */
     top: auto;
@@ -69,8 +76,9 @@ footer {
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;
+        width: 50px;
     }
     .sidenav a {
-        font-size: 18px;
+        font-size: 8px;
     }
 }
