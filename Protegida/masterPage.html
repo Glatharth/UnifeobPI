@@ -7,12 +7,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <!-- Jquery -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
 
     <!-- Bootstrap -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,16 +21,16 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
         integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous">
-    </script>
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
 
     <link rel="stylesheet" href="../css/MasterPage.css">
+
+    <!-- Paciente -->
+    <link rel="stylesheet" href="../css/paciente.css">
 </head>
 
 <body>
-
-
     <header>
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top" style="padding: 0px; height: 10%;">
             <div class="siteName">
@@ -98,44 +98,58 @@
             </div>
         </nav>
     </header>
-    
-    
-    <nav class="sidenav">
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                    <i class="fas fa-home"></i>
-                    Home
+    <div id="wrapper">
+        <nav class="sidenav navbar-nav">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a class="nav-link" href="#">Home 1</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fas fa-copy"></i>
+                        Pages
+                    </a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a class="nav-link" href="#">Page 1</a>
+                        </li>
+                    </ul>
+                </li>
+                <a href="#">
+                    <i class="fas fa-briefcase"></i>
+                    About
                 </a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li>
-                        <a class="nav-link" href="#">Home 1</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item">
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                    <i class="fas fa-copy"></i>
-                    Pages
-                </a>
-                <ul class="collapse list-unstyled" id="pageSubmenu">
-                    <li>
-                        <a class="nav-link" href="#">Page 1</a>
-                    </li>
-                </ul>
-            </li>
-            <a href="#">
-                <i class="fas fa-briefcase"></i>
-                About
-            </a>
-        </ul>
-    </nav>
-    <section class="container">
-        <!-- Conteudo -->
-    </section>
+            </ul>
+        </nav>
+        <section id="content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="card">
+                        <img class="card-img-top" src="../images/480x320.png" alt="Card image">
+                        <div class="card-body">
+                            <h5 class="card-title">Nome</h5>
+                            <p class="card-text">Idade</p>
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-angle-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <footer>
-        <span>Trabalho de PI</span>
-    </footer>
+        <footer>
+            <span>Trabalho de PI</span>
+        </footer>
+    </div>
 </body>
+
 </html>
