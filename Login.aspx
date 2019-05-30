@@ -17,27 +17,27 @@
     <form id="form1" runat="server">
         
         <div class="limiter">
-		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+		<div class="container-login100" style="background-color:black">
 			<div class="wrap-login100 p-t-30 p-b-50">
 				
                 <span class="login100-form-title p-b-41">
-					Entrar / <a href="Cadastro.aspx"  style="text-decoration:none; font-family:Ubuntu-Bold; font-size: 25px;color: #d1cece; text-transform:uppercase;">Cadastrar</a>
+					Entrar / <a href="Cadastro.aspx"  style="text-decoration:none; font-family:Ubuntu-Bold; font-size: 25px;color:#DC3545; text-transform:uppercase;">Cadastrar</a>
 				</span>
                 
 				<div class="login100-form validate-form p-b-33 p-t-5">
 
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-                        <asp:TextBox ID="TextBoxEmail" runat="server" class="input100" placeholder="email"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxEmail" runat="server" class="input100" placeholder="E-mail"></asp:TextBox>
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <asp:TextBox ID="TextBoxSenha" runat="server" class="input100" type="password" placeholder="senha"></asp:TextBox>
+                        <asp:TextBox ID="TextBoxSenha" runat="server" class="input100" type="password" placeholder="Senha"></asp:TextBox>
 						<span class="focus-input100" data-placeholder="&#xe80f;"></span>
 					</div>
 
                     <div style="display:none" class="wrap-input100 validate-input" id="DivLabel" runat="server">
-                        <asp:Label ID="LabelMsg" runat="server" class="input100" style="padding-top: 15px;"></asp:Label>
+                        <asp:Label ID="LabelMsg" runat="server" class="input100" style="padding-top: 15px; color:#DC3545"></asp:Label>
 						<span  data-placeholder="&#xe80f;"></span>
 					</div>
 

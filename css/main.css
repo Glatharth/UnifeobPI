@@ -213,23 +213,20 @@ label {
   pointer-events: none;
 }
 
-.focus-input100::before {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 0;
-  height: 1px;
-
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
-
-  background: black;
-  
-}
+    .focus-input100::before {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        -webkit-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+        transition: all 0.4s;
+        background: #DC3545;
+    }
 
 .focus-input100::after {
   font-family: Linearicons-Free;
@@ -254,10 +251,10 @@ label {
   padding-left: 60px;
 }
 
-.input100:focus + .focus-input100::after {
-  left: 23px;
-  color: black;
-}
+    .input100:focus + .focus-input100::after {
+        left: 23px;
+        color: #DC3545;
+    }
 
 .input100:focus + .focus-input100::before {
   width: 100%;
@@ -307,7 +304,7 @@ label {
     min-width: 160px;
     height: 42px;
     border-radius: 21px;
-    background: #535353; /*Cor do botao*/
+    background: #DC3545; /*Cor do botao*/
     position: relative;
     z-index: 1;
     -webkit-transition: all 0.4s;
