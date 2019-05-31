@@ -1,6 +1,6 @@
-/* body {
-    
-} */
+body {
+    font-size: 1em;
+}
 
 footer {
     background: rgba(0, 0, 0, 0.521);
@@ -11,7 +11,6 @@ footer {
 section {
     height: 100%;
     margin-left: 180px; 
-    width: 100%;
 }
 
 .siteName, .sidenav {
@@ -36,7 +35,7 @@ section {
 .sidenav {
     height: 100%;
     /* Full-height: remove this if you want "auto" height */
-    position: fixed;
+    position: absolute;
     /* Fixed Sidebar (stay in place on scroll) */
     /* z-index: 1; Stay on top */
     top: auto;
