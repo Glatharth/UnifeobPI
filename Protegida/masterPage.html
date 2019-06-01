@@ -247,16 +247,3 @@
         </section>
     </div>
 </body>
-<!-- Aula Anderson-->
-
-</html>
-<script>
-    $(document).ready(function () {
-        $("#filter").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#order_cards_filter div").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
