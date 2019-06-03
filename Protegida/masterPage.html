@@ -26,8 +26,8 @@
 
     <link rel="stylesheet" href="../css/MasterPage.css">
 
-    <!-- Perfil -->
-    <link rel="stylesheet" href="../css/profile.css">
+    <!-- Paciente -->
+    <link rel="stylesheet" href="../css/paciente.css">
 </head>
 
 <body>
@@ -129,145 +129,132 @@
                 </a>
             </ul>
         </nav>
-
-
+        
+        
         <section id="content-wrapper">
             <div class="container-fluid">
-                <div class="emp-profile">
-                    <form method="post">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="profile-img">
-                                    <img src="../images/480x320.png" alt="" />
-                                    <div class="file btn btn-lg btn-primary">
-                                        Change Photo
-                                        <input type="file" name="file" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="profile-head">
-                                    <h5>
-                                        Name
-                                    </h5>
-                                    <h6>
-                                        Profissão (Área)
-                                    </h6>
-                                    <p class="proile-clients">Pacientes : <span>8/10</span></p>
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home"
-                                                role="tab" aria-controls="home" aria-selected="true">Sobre</a>
-                                        </li>
-                                        <!-- <li class="nav-item">
-                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
-                                                role="tab" aria-controls="profile" aria-selected="false">Consultas</a>
-                                        </li> -->
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="profile-work">
-                                    <p><a href="#"><span>03/06</span></a> - Você tem <span>3</span> consultas.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="tab-content profile-tab" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="home" role="tabpanel"
-                                        aria-labelledby="home-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Nome</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Nome</p>
-                                            </div>
+
+                <div class="col-sm-2" style="padding-right: 0px;">
+                    <input class="form-control" id="filter" type="text" placeholder="Search..">
+                </div>
+
+                <div class="row" id="order_cards_filter">
+
+                    <div class="card">
+                        <h1 class="card-title">Nome</h1>
+                        <img class="card-img-top" src="../images/480x320.png" alt="Card image" data-toggle="modal"
+                             data-target="#myModal">
+                        <div class="card-body">
+                            <p class="card-text-info">Sexo</p>
+                            <p class="card-text-info">Idade</p>
+                            <p class="card-text-info">Telefone</p>
+                            <p class="card-text-info">Proxima Consulta</p>
+                            <div class="modal fade" id="myModal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Name - Idade</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Email</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>email@email.com</p>
-                                            </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <article class="modal-text">
+                                                <figure class="left">
+                                                    <img src="../images/480x320.png" alt="Card image" />
+                                                </figure>
+                                                <p>
+                                                    Teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste
+                                                </p>
+                                            </article>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Contato</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>(ddd) 99999999999</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Profissão</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Profissão</p>
-                                            </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
                                         </div>
                                     </div>
-                                    <!-- <div class="tab-pane fade" id="profile" role="tabpanel"
-                                        aria-labelledby="profile-tab">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Horas</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>100</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Quantidade por mês</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>15</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Total Projects</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>230</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>English Level</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>Expert</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Availability</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p>6 months</p>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <label>Your Bio</label><br />
-                                                <p>Your detail description</p>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
                             </div>
                         </div>
-                    </form>
+                        <div class="card-footer">
+                            <span class="badge badge-primary">Primary</span>
+                            <span class="badge badge-secondary">Secondary</span>
+                            <span class="badge badge-success">Success</span>
+                            <span class="badge badge-danger">Danger</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h1 class="card-title">Hahaha</h1>
+                        <img class="card-img-top" src="../images/480x320.png" alt="Card image" data-toggle="modal"
+                             data-target="#myModal">
+                        <div class="card-body">
+                            <p class="card-text-info">Sexo</p>
+                            <p class="card-text-info">Idade</p>
+                            <p class="card-text-info">Telefone</p>
+                            <p class="card-text-info">Proxima Consulta</p>
+                            <div class="modal fade" id="myModal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Name - Idade</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <article class="modal-text">
+                                                <figure class="left">
+                                                    <img src="../images/480x320.png" alt="Card image" />
+                                                </figure>
+                                                <p>
+                                                    Teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste
+                                                </p>
+                                            </article>
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge badge-primary">Primary</span>
+                            <span class="badge badge-secondary">Secondary</span>
+                            <span class="badge badge-success">Success</span>
+                            <span class="badge badge-danger">Danger</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+
+            <ul class="pagination pagination-sm justify-content-center" style="margin:20px 0">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+
         </section>
     </div>
 </body>
