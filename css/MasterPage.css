@@ -35,7 +35,7 @@ section {
 .sidenav {
     height: 100%;
     /* Full-height: remove this if you want "auto" height */
-    position: fixed;
+    position: absolute;
     /* Fixed Sidebar (stay in place on scroll) */
     /* z-index: 1; Stay on top */
     top: auto;

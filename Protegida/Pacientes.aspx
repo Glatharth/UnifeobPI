@@ -7,14 +7,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-    <section id="content-wrapper">
+    <section id="content-wrapper" style="margin-left:270px">
         <div class="container-fluid">
             <div class="row" id="order_cards_filter">
 
                 <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1">
                     <ItemTemplate>
 
-                <div class="card">
+                <div class="card" style="margin-top:10px">
                         <h1 class="card-title"><%#Eval("Nome")%></h1>
                         <img class="card-img-top" src="../images/480x320.png" alt="Card image" data-toggle="modal"
                              data-target="#myModal<%#Eval("id")%>">

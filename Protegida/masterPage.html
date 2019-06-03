@@ -129,56 +129,132 @@
                 </a>
             </ul>
         </nav>
+        
+        
         <section id="content-wrapper">
             <div class="container-fluid">
-                <form action="/">
-                    <div class="form-group form-inline">
-                        <label for="nome">Nome Completo:</label>
-                        <input type="text" class="form-control">
+
+                <div class="col-sm-2" style="padding-right: 0px;">
+                    <input class="form-control" id="filter" type="text" placeholder="Search..">
+                </div>
+
+                <div class="row" id="order_cards_filter">
+
+                    <div class="card">
+                        <h1 class="card-title">Nome</h1>
+                        <img class="card-img-top" src="../images/480x320.png" alt="Card image" data-toggle="modal"
+                             data-target="#myModal">
+                        <div class="card-body">
+                            <p class="card-text-info">Sexo</p>
+                            <p class="card-text-info">Idade</p>
+                            <p class="card-text-info">Telefone</p>
+                            <p class="card-text-info">Proxima Consulta</p>
+                            <div class="modal fade" id="myModal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Name - Idade</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <article class="modal-text">
+                                                <figure class="left">
+                                                    <img src="../images/480x320.png" alt="Card image" />
+                                                </figure>
+                                                <p>
+                                                    Teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste
+                                                </p>
+                                            </article>
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge badge-primary">Primary</span>
+                            <span class="badge badge-secondary">Secondary</span>
+                            <span class="badge badge-success">Success</span>
+                            <span class="badge badge-danger">Danger</span>
+                        </div>
                     </div>
-                    <div class="form-group form-inline">
-                        <label for="birthdate">Data de nascimento: </label>
-                        <input type="date" class="form-control">
+
+                    <div class="card">
+                        <h1 class="card-title">Hahaha</h1>
+                        <img class="card-img-top" src="../images/480x320.png" alt="Card image" data-toggle="modal"
+                             data-target="#myModal">
+                        <div class="card-body">
+                            <p class="card-text-info">Sexo</p>
+                            <p class="card-text-info">Idade</p>
+                            <p class="card-text-info">Telefone</p>
+                            <p class="card-text-info">Proxima Consulta</p>
+                            <div class="modal fade" id="myModal">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Name - Idade</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <article class="modal-text">
+                                                <figure class="left">
+                                                    <img src="../images/480x320.png" alt="Card image" />
+                                                </figure>
+                                                <p>
+                                                    Teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste teste teste teste teste teste
+                                                    teste teste teste teste teste teste
+                                                </p>
+                                            </article>
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">
+                                                Close
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge badge-primary">Primary</span>
+                            <span class="badge badge-secondary">Secondary</span>
+                            <span class="badge badge-success">Success</span>
+                            <span class="badge badge-danger">Danger</span>
+                        </div>
                     </div>
-                    <div class="form-group form-inline">
-                        <label for="gender">Sexo:</label>
-                        <input type="text" maxlength="2" class="form-control">
-                    </div>
-                    <div class="form-group form-inline">
-                        <label for="address">Endereço:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group form-inline">
-                        <label for="address">UF:</label>
-                        <input type="text" maxlength="2" class="form-control">
-                    </div>
-                    <div class="form-group form-inline">
-                        <label for="city">Cidade:</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group form-inline">
-                        <label for="CEP">CEP: </label>
-                        <input type="text" maxlength="9" class="form-control">
-                    </div>
-                    <div class="form-group form-inline">
-                        <label for="RG">RG: </label>
-                        <input type="text" maxlength="9" class="form-control">
-                    </div>
-                    <div class="form-group form-inline">
-                        <label for="CPF">CPF: </label>
-                        <input type="text" maxlength="11" class="form-control">
-                    </div>
-                    <div class="form-group form-inline">
-                        <label for="email">Email: </label>
-                        <input type="email" class="form-control">
-                    </div>
-                    <div class="form-group form-inline">
-                        <label for="pwd form-inline">Password:</label>
-                        <input type="password" class="form-control">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+
+                </div>
             </div>
+
+            <ul class="pagination pagination-sm justify-content-center" style="margin:20px 0">
+                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+
         </section>
     </div>
 </body>
