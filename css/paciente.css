@@ -16,10 +16,10 @@
 }
 
 .card-title {
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color: #DC3545;
     border-top-left-radius: calc(.25rem - 1px);
     border-top-right-radius: calc(.25rem - 1px);
-    font-size: 1.2em;
+    font-size: 1.7em;
     padding: 0px;
     margin: 0px;
     text-align: center;

@@ -1,34 +1,81 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Protegida/MasterPage.master" AutoEventWireup="true" CodeFile="Pacientes.aspx.cs" Inherits="Protegida_Default3" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+
+    <link href="../css/paciente.css" rel="stylesheet" />
+
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
-       <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1">
-        <ItemTemplate>
+    <section id="content-wrapper">
+        <div class="container-fluid">
+            <div class="row" id="order_cards_filter">
 
-<a href="Detalhe_Paciente.aspx?id=<%#Eval("id")%>" style="text-decoration:none; color:black; font-size:20px">
+                <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1">
+                    <ItemTemplate>
 
-    <div style="margin:100px auto; text-align:center">
+                <div class="card">
+                        <h1 class="card-title"><%#Eval("Nome")%></h1>
+                        <img class="card-img-top" src="../images/480x320.png" alt="Card image" data-toggle="modal"
+                             data-target="#myModal<%#Eval("id")%>">
+                        <div class="card-body">
+                            <p class="card-text-info">Sexo: <%#Eval("Sexo")%></p>
+                            <p class="card-text-info"><%#Eval("Idade")%> anos</p>
+                            <p class="card-text-info"><%#Eval("Telefone")%></p>
+                            <p class="card-text-info"><%#Eval("Cidade")%></p>
 
-<div style="width:25%; float:left; margin-top:20px; margin-left:20px;">
-    <div style="width:90%; height:200px;border:3px solid black;">
-        <div style="width:100%; margin-top:50px"><%#Eval("Nome")%></div>
-        <br />
-        <div style="width:100%"><%#Eval("Sexo")%></div>
-        <br />
-        <div style="width:100%"><%#Eval("DataNasc")%></div>
-    </div>
-</div>
-                </div>
+                            <div class="modal fade" id="myModal<%#Eval("id")%>">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title"><%#Eval("Nome")%> - <%#Eval("Idade")%> anos</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <article class="modal-text">
+                                                <figure class="left">
+                                                    <img src="../images/480x320.png" alt="Card image" />
+                                                </figure>
 
-</a>
+                                                <p>E-mail: <%#Eval("Email")%></p>
+                                                <p>Telefone: <%#Eval("Telefone")%></p>
+                                                <p>Sexo: <%#Eval("Sexo")%></p>
+                                                <p>CPF: <%#Eval("Cpf")%></p>
+                                                <p>RG: <%#Eval("Rg")%></p>
+                                                <p>Endereço: <%#Eval("Endereco")%></p>
+                                                <p>Cidade: <%#Eval("Cidade")%> - <%#Eval("Uf")%></p>
+                                                <p>Descrição: <%#Eval("Descricao")%></p>
 
-        </ItemTemplate>
-     </asp:ListView>
-    
+                                            </article>
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">
+                                                Fechar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge badge-primary">Primary</span>
+                            <span class="badge badge-secondary">Secondary</span>
+                            <span class="badge badge-success">Success</span>
+                            <span class="badge badge-danger">Danger</span>
+                        </div>
+                    </div>
 
-    
+                    </ItemTemplate>
+                </asp:ListView>
+
+            </div>
+        </div>
+    </section>
+
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [tb_pacientes] WHERE ([Dr] = ?) ORDER BY [Nome]">
         <SelectParameters>
             <asp:SessionParameter Name="Dr" SessionField="id" Type="String" />

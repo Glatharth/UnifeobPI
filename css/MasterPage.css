@@ -18,7 +18,7 @@ section {
     min-width: 150px;
     width: 15%; */
     width: 180px;
-    background-color: rgba(0,175,240, 100);
+    background-color: #DC3545;
     height: 100%;
     padding: 0;
     margin: 0;
@@ -35,13 +35,13 @@ section {
 .sidenav {
     height: 100%;
     /* Full-height: remove this if you want "auto" height */
-    position: absolute;
+    position: fixed;
     /* Fixed Sidebar (stay in place on scroll) */
     /* z-index: 1; Stay on top */
     top: auto;
     /* Stay at the top */
     left: 0;
-    background-color: rgb(28, 32, 36);
+    background-color: black;
     overflow-x: hidden;
     /* Disable horizontal scroll */
     
