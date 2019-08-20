@@ -1,7 +1,7 @@
 import React from 'react';
 
 import 'bulma';
-import { Container } from './styles';
+import { Aside } from './styles';
 
 export default function Sidebar() {
     return (
