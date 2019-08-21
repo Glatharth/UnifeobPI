@@ -3,7 +3,10 @@ export const config = {
         adminPanel: {
             sidebar: {
                 width: '200px'
+            },
+            header: {
+                height: '50px'
             }
-        }
-    }
+        },
+    }    
 };
