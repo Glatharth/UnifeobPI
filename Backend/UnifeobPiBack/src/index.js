@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
-import './styles/global.css';
+const app = express();
 
-import { BrowserRouter } from 'react-router-dom';
+app.use(cors());
 
-ReactDOM.render(
-<BrowserRouter>
-  <App />
-</BrowserRouter>
-, document.getElementById('root'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended:false }));
+
+require('./app/controllers/index')(app);
 
 
+app.listen(3001);
