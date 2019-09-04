@@ -21,6 +21,6 @@ $(document).ready(function(){
   $("#menuTitle").click(() => alterMenu());
 
   $("#dropdown").click(() => {
-    $(".dropdown-content").fadeToggle("slow");
+    $(".dropdown-content").fadeToggle();
   });
 });

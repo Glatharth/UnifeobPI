@@ -5,7 +5,9 @@ import './admin.css';
 import { Switch, Route, Link} from 'react-router-dom';
 
 import Dashboard from '../../views/Dashboard/Dashboard';
-import Pacientes from '../../views/Pacientes/Pacientes';
+import Patients from '../../views/Patients/Patients';
+import PatientCreate from '../../views/PatientCreate/PatientCreate';
+import PatientView from '../../views/PatientView/PatientView';
 import TableList from '../../views/TableList/TableList';
 import Icons from '../../views/Icons/Icons';
 import Maps from '../../views/Maps/Maps';
@@ -15,7 +17,7 @@ export default function Admin() {
 
   const [menus, setmenus] = useState([
     { page: "Dashboard", url:"Dashboard", name: "DASHBOARD", selected: "selected"},
-    { page: "Pacientes", url:"Pacientes", name: "PACIENTES" },
+    { page: "Pacientes", url:"Patients", name: "PACIENTES" },
     { page: "Table List", url:"TableList", name: "TABLE LIST" },
     { page: "Icons", url:"Icons", name: "ICONS" },
     { page: "Maps", url:"Maps", name: "MAPS" },
@@ -53,10 +55,10 @@ export default function Admin() {
         <div class="dropdown">
           <button class="dropbtn" id="dropdown">Botao</button>
           <div id="dropCont" class="dropdown-content">
-            <a>Perfil</a>
-            <a>Sobre</a>
-            <a>Ticket</a>
-            <a>Sair</a>
+            <li>Perfil</li>
+            <li>Sobre</li>
+            <li>Ticket</li>
+            <li>Sair</li>
           </div>
         </div>
 
@@ -84,7 +86,9 @@ export default function Admin() {
           <Switch>
             <Route exact path="/" component={Dashboard}></Route>
             <Route path="/Dashboard" component={Dashboard}></Route>
-            <Route path="/Pacientes" component={Pacientes}></Route>
+            <Route path="/Patients" component={Patients}></Route>
+            <Route path="/PatientCreate" component={PatientCreate}></Route>
+            <Route path="/PatientView" component={PatientView}></Route>
             <Route path="/TableList" component={TableList}></Route>
             <Route path="/Icons" component={Icons}></Route>
             <Route path="/Maps" component={Maps}></Route>

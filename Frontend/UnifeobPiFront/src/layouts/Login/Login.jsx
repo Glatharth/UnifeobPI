@@ -10,7 +10,7 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault()
     
-    const response = await api.post('/auth/authenticate', data)
+    const response = await api.post('/auth/register', data)
 
     alert(JSON.stringify(response.data))
   }

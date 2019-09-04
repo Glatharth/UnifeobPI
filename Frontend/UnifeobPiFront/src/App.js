@@ -6,7 +6,7 @@ import Login from './layouts/Login/Login';
 
 function App() {
   return (
-    <Login/>
+    <Admin/>
   );
 }
 
