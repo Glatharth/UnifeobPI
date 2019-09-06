@@ -3,4 +3,153 @@
   height: 100%;
 
   background: rgba(255,255,255, 0.8);
+
+  display: grid;
+  grid-template-rows: 10vh 77vh;
+  grid-template-areas: 'h'
+                       'm';
+}
+
+.patientsHeader {
+  grid-area: h;
+
+  color: black;
+  background: rgba(0,0,0, 0.5);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.patientsBoxSearch {
+  width: 60%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.patientsBoxSearch input {
+  width: 70%;
+
+  font-size: 36px;
+}
+
+.patientsBoxButtons {
+  width: 60%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+}
+
+.patientsButtons {
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.patientsMain{
+  grid-area: m;
+
+  width: 100%;
+  height: 100%;
+  
+  overflow: auto;
+}
+
+.patientsMainOut {
+  width: 50%;
+  height: 150px;
+  float: left;
+  margin: 30px auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.patientsMainBox {
+  width: 80%;
+  height: 150px;
+  border-radius: 15px;
+  border: 2px solid black;
+  cursor: pointer;
+
+  background: rgba(0,0,0,0.2);
+  box-shadow: 10px 5px 20px 2px rgba(0,0,0,0.15);
+
+  display: flex;
+  justify-content: center;
+}
+
+.patientsMainBox:hover {
+  background: rgba(0,0,0,0.1);
+  box-shadow: 10px 5px 20px 2px rgba(0,0,0,0);
+}
+
+.patientsMainBoxPhoto {
+  width: 45%;
+  border-radius: 15px 0px 0px 15px;
+  border-right: 2px solid black;
+}
+
+.patientsMainBoxItens {
+  width: 55%;
+}
+
+.patientsMainBoxItensName {
+  width: 100%;
+  height: 35%;
+
+  display: flex;
+  align-items: center;
+  padding-left: 20px; 
+}
+
+.patientsMainBoxItensName h2 {
+  color: black;
+}
+
+.patientsMainBoxItensDescription {
+  width: 100%;
+  height: 65%;
+  padding: 10px;
+}
+
+.patientsMainBoxItensDescription h4 {
+  color: black;
+}
+
+.patientsMainBoxGravityLow {
+  width: 10%;
+  border-radius: 0px 10px 10px 0px;
+  border-left: 2px solid black;
+
+  background: green;
+}
+
+.patientsMainBoxGravityAverage {
+  width: 10%;
+  border-radius: 0px 10px 10px 0px;
+  border-left: 2px solid black;
+
+  background: yellow;
+}
+
+.patientsMainBoxGravityHigh {
+  width: 10%;
+  border-radius: 0px 10px 10px 0px;
+  border-left: 2px solid black;
+
+  background: red;
 }

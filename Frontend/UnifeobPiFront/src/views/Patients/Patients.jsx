@@ -9,23 +9,75 @@ export default function patients() {
 
     <div id="patients" className="patients">
 
-      <h1>Pacientes</h1>
+     <div className="patientsHeader">
 
-      <Link to="/PatientCreate"><h2>Criar</h2></Link>
+       <div className="patientsBoxSearch">
+        <input type="text" name="search" id="search" />
+       </div>
 
-      <h2>Lista de pacientes</h2>
+       <div className="patientsBoxButtons">
+        <div className="patientsButtons">A - Z</div>
+        <div className="patientsButtons">Gravidade</div>
 
-        <Link to="/PatientView">Paciente1</Link>
-        <br/>
-        <Link to="/PatientView">Paciente2</Link>
-        <br/>
-        <Link to="/PatientView">Paciente3</Link>
-        <br/>
-        <Link to="/PatientView">Paciente4</Link>
-        <br/>
-        <Link to="/PatientView">Paciente5</Link>
+        <Link to="PatientCreate">
+          <div className="patientsButtons">Novo Paciente</div>
+        </Link>
+       
+       </div>
 
+     </div>
 
+    <div className="patientsMain">
+
+    {/* START MAP */}
+
+    <div className="patientsMainOut">
+      <div className="patientsMainBox">
+        <img className="patientsMainBoxPhoto"></img>
+        <div className="patientsMainBoxItens">
+          <div className="patientsMainBoxItensName"><h2>Cesar</h2></div>
+          <div className="patientsMainBoxItensDescription"><h4>Sou Cesar como é seu nome</h4></div>
+        </div>
+        <div className="patientsMainBoxGravityAverage"/>
+      </div>
+    </div>
+
+    <div className="patientsMainOut">
+      <div className="patientsMainBox">
+        <img className="patientsMainBoxPhoto"></img>
+        <div className="patientsMainBoxItens">
+          <div className="patientsMainBoxItensName"><h2>Cesar</h2></div>
+          <div className="patientsMainBoxItensDescription"><h4>Sou Cesar como é seu nome</h4></div>
+        </div>
+        <div className="patientsMainBoxGravityHigh"/>
+      </div>
+    </div>
+
+    <div className="patientsMainOut">
+      <div className="patientsMainBox">
+        <img className="patientsMainBoxPhoto"></img>
+        <div className="patientsMainBoxItens">
+          <div className="patientsMainBoxItensName"><h2>Cesar</h2></div>
+          <div className="patientsMainBoxItensDescription"><h4>Sou Cesar como é seu nome</h4></div>
+        </div>
+        <div className="patientsMainBoxGravityAverage"/>
+      </div>
+    </div>
+
+    <div className="patientsMainOut">
+      <div className="patientsMainBox">
+        <img className="patientsMainBoxPhoto"></img>
+        <div className="patientsMainBoxItens">
+          <div className="patientsMainBoxItensName"><h2>Cesar</h2></div>
+          <div className="patientsMainBoxItensDescription"><h4>Sou Cesar como é seu nome</h4></div>
+        </div>
+        <div className="patientsMainBoxGravityLow"/>
+      </div>
+    </div>
+
+    {/* END MAP */}
+  
+    </div>
 
 
     </div>
