@@ -1,0 +1,170 @@
+.chatConteiner {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 13vh 77vh 10vh;
+  grid-template-areas: 'a h'
+                       'a m'
+                       'a f';
+}
+
+.chatConteinerheader {
+  grid-area: h;
+
+  background: rgba(0,0,0,0.2);
+
+}
+
+.navbarHeaderPhoto {
+  width: 10%;
+  height: 100%;
+  float: left;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbarHeaderPhoto img{
+  width: 50%;
+  height: 60%;
+  border-radius: 50px;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.navbarHeaderTexts {
+  width: 90%;
+  height: 100%;
+  float: left;
+}
+
+.navbarHeaderTextsContact {
+  height: 50%;
+
+  display: flex;
+  align-items: flex-end;
+}
+
+.navbarHeaderTextsDescription {
+  height: 50%;
+
+  display: flex;
+  align-items: flex-start;
+}
+
+.chatConteiner aside {
+  grid-area: a;
+}
+
+.sidebarHeader {
+  width: 100%;
+  height: 13vh;
+
+  background: rgba(255,255,255, 0.1);
+}
+
+.sidebarHeaderPhoto {
+  width: 40%;
+  height: 100%;
+  float: left;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebarHeaderPhoto img {
+  width: 50%;
+  height: 60%;
+  border-radius: 50px;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.sidebarHeaderName {
+  width: 60%;
+  height: 100%;
+  float: left;
+  padding-left: 20px;
+
+  display: flex;
+  align-items: center;
+}
+
+.sidebarHeaderName h2 {
+
+}
+
+.sidebarSearch {
+  width: 100%;
+  height: 7vh;
+
+  background: rgba(0,0,0,0.3);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebarSearch input {
+
+  width: 80%;
+  height: 60%;
+  font-size: 16px;
+  border-radius: 15px;
+  border: none;
+
+  padding-left: 20px;
+}
+
+.sidebarContacts {
+  width: 100%;
+  height: 80vh;
+
+  background: rgba(0,0,0,0.2);
+}
+
+.chatConteiner main {
+  grid-area: m;
+
+  background: rgba(255,255,255, 0.8);
+}
+
+.chatConteiner footer {
+  grid-area: f;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.5);
+}
+
+.sendMessageEmoji {
+  width: 10%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sendMessageText {
+  width: 80%;
+  height: 100%;
+
+}
+
+.sendMessageVoice {
+  width: 10%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
