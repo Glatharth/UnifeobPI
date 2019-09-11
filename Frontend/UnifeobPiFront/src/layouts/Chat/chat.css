@@ -1,12 +1,31 @@
+.outChat{
+  width: 100%;
+  height: 100%;
+}
+
 .chatConteiner {
   width: 100%;
   height: 100%;
 
   display: grid;
   grid-template-columns: 1fr 4fr;
-  grid-template-rows: 13vh 77vh 10vh;
+  grid-template-rows: 13vh 77vh 0vh 10vh;
   grid-template-areas: 'a h'
                        'a m'
+                       'a e'
+                       'a f';
+}
+
+.chatConteinerEmojis {
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 13vh 52vh 25vh 10vh;
+  grid-template-areas: 'a h'
+                       'a m'
+                       'a e'
                        'a f';
 }
 
@@ -56,7 +75,7 @@
   align-items: flex-start;
 }
 
-.chatConteiner aside {
+.outChat aside {
   grid-area: a;
 }
 
@@ -129,13 +148,21 @@
   background: rgba(0,0,0,0.2);
 }
 
-.chatConteiner main {
+.outChat main {
   grid-area: m;
 
   background: rgba(255,255,255, 0.8);
 }
 
-.chatConteiner footer {
+.boxEmojis {
+  background: white;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  grid-area: e;
+}
+
+.outChat footer {
   grid-area: f;
 
   display: flex;
