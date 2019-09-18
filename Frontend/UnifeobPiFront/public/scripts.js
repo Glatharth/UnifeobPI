@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  
+  // Admin
 
   function alterMenu() {
     if($("#aside").css("display") === "none"){
@@ -23,4 +23,29 @@ $(document).ready(function(){
   $("#dropdown").click(() => {
     $(".dropdown-content").fadeToggle();
   });
+
+
+  // Chat
+
+  function alterEmoji(){
+    
+    
+    if($("#boxEmojis").css("display") === "none"){
+    
+      $("#chatMain").removeClass('chatConteiner').addClass('chatConteinerEmojis');
+      $("#boxEmojis").removeClass('boxEmojisClose').addClass('boxEmojis');
+      
+
+
+    } else {
+
+      $("#chatMain").removeClass('chatConteinerEmojis').addClass('chatConteiner');
+      $("#boxEmojis").removeClass('boxEmojis').addClass('boxEmojisClose');
+
+    }
+
+  }
+
+  $("#emojiButton").click(() => alterEmoji());
+
 });

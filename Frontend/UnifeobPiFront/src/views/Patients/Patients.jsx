@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {Link} from 'react-router-dom';
 
 import './Patients.css';
 
-export default function patients() {
+import PatiensList from '../../components/PatientsList.json';
+
+export default function Patients() {
+
+  const [patients, setPatients] = useState(PatiensList);
+
   return (
 
     <div id="patients" className="patients">
@@ -29,54 +34,19 @@ export default function patients() {
 
     <div className="patientsMain">
 
-    {/* START MAP */}
+    {patients.map( pt => (
+            <div className="patientsMainOut">
+            <div className="patientsMainBox">
+              <img className="patientsMainBoxPhoto"></img>
+              <div className="patientsMainBoxItens">
+                <div className="patientsMainBoxItensName"><h2>{pt.name}</h2></div>
+                <div className="patientsMainBoxItensDescription"><h4>{pt.description}</h4></div>
+              </div>
+              <div className={`patientsMainBoxGravity${pt.gravity}`}/>
+            </div>
+          </div>
+    ))}
 
-    <div className="patientsMainOut">
-      <div className="patientsMainBox">
-        <img className="patientsMainBoxPhoto"></img>
-        <div className="patientsMainBoxItens">
-          <div className="patientsMainBoxItensName"><h2>Cesar</h2></div>
-          <div className="patientsMainBoxItensDescription"><h4>Sou Cesar como é seu nome</h4></div>
-        </div>
-        <div className="patientsMainBoxGravityAverage"/>
-      </div>
-    </div>
-
-    <div className="patientsMainOut">
-      <div className="patientsMainBox">
-        <img className="patientsMainBoxPhoto"></img>
-        <div className="patientsMainBoxItens">
-          <div className="patientsMainBoxItensName"><h2>Cesar</h2></div>
-          <div className="patientsMainBoxItensDescription"><h4>Sou Cesar como é seu nome</h4></div>
-        </div>
-        <div className="patientsMainBoxGravityHigh"/>
-      </div>
-    </div>
-
-    <div className="patientsMainOut">
-      <div className="patientsMainBox">
-        <img className="patientsMainBoxPhoto"></img>
-        <div className="patientsMainBoxItens">
-          <div className="patientsMainBoxItensName"><h2>Cesar</h2></div>
-          <div className="patientsMainBoxItensDescription"><h4>Sou Cesar como é seu nome</h4></div>
-        </div>
-        <div className="patientsMainBoxGravityAverage"/>
-      </div>
-    </div>
-
-    <div className="patientsMainOut">
-      <div className="patientsMainBox">
-        <img className="patientsMainBoxPhoto"></img>
-        <div className="patientsMainBoxItens">
-          <div className="patientsMainBoxItensName"><h2>Cesar</h2></div>
-          <div className="patientsMainBoxItensDescription"><h4>Sou Cesar como é seu nome</h4></div>
-        </div>
-        <div className="patientsMainBoxGravityLow"/>
-      </div>
-    </div>
-
-    {/* END MAP */}
-  
     </div>
 
 
