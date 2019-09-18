@@ -4,7 +4,7 @@ import './chat.css';
 import io from 'socket.io-client';
 import $ from 'jquery';
 
-import imgt from '../../images/hermione.jpg';
+import imgt from '../../images/user.jpg';
 
 import EmojisList from '../../components/EmojisList';
 import { MdMood, MdKeyboardVoice } from 'react-icons/md';
@@ -14,6 +14,40 @@ export default function Chat() {
 
 
   var socket = io('http://localhost:3000');
+
+  function readKey(e){
+    if(e.which == 13) {
+      chatSubmit();
+    }
+  }
+
+  function calcHour(){
+
+    var time = new Date();
+
+    var hours = time.getHours();
+    var minutes = time.getMinutes();
+
+    if(hours < 6){
+        return(`${hours}:${minutes} da madrugada`)
+    }
+
+    else if(hours < 12){
+        return(`${hours}:${minutes} da manha`)
+    }
+
+    else if(hours < 18){
+
+        if(hours > 12){hours = hours - 12};
+
+        return(`${hours}:${minutes} da tarde`)
+    }
+
+    else if(hours <= 24 ){
+        hours = hours - 12
+        return(`${hours}:${minutes} da noite`)
+    }
+  }
 
   function renderMessage(message){
 
@@ -29,7 +63,7 @@ export default function Chat() {
                 ${message.message}
               </div>
               <span class="messageTime">
-                ${message.author}
+                ${message.hour}
               </span>
             </div>
           </div>
@@ -44,7 +78,7 @@ export default function Chat() {
                 ${message.message}
               </div>
               <span class="messageTime">
-                ${message.author}
+                ${message.hour}
               </span>
             </div>
           </div>
@@ -64,22 +98,23 @@ export default function Chat() {
     renderMessage(message);
   })
 
-  function chatSubmit(e){
-    e.preventDefault();
+  function chatSubmit(){
 
     var author = $('#userName').html();
     var message = $('input[name=message]').val();
+    var hour = calcHour();
 
     if(author.length && message.length){
       var messageObject = {
-        author: author,
-        message: message
-        
+        author,
+        message,
+        hour  
       };
 
       renderMessage(messageObject);
-
       socket.emit('sendMessage', messageObject);
+
+      $('input[name=message]').val("");
     }
   }
 
@@ -136,10 +171,10 @@ export default function Chat() {
             <MdMood id="emojiButton" size={35}/>
           </div>
           <div className="sendMessageText">
-            <input name="message" id="message"></input>
+            <input onKeyPress={readKey} name="message" id="message"></input>
           </div>
           <div className="sendMessageVoice">
-            <MdKeyboardVoice id="voiceButton" onClick={chatSubmit} size={35}/>
+            <MdKeyboardVoice id="voiceButton" size={35}/>
           </div>
         </footer>
 

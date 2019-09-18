@@ -9,6 +9,10 @@ const MessagesSchema = new mongoose.Schema({
     type: Object,
     require: true,
   },
+  hour: {
+    type: String,
+    require: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
