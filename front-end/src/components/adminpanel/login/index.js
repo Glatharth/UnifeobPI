@@ -27,7 +27,7 @@ export default function LoginAdmin() {
                                     <div className="field">
                                         <div className="control has-icons-left">
                                             <div className="buttons has-addons is-centered">
-                                                <a className="button is-link is-outlined">Login</a>
+                                                <a href="/" className="button is-link is-outlined">Login</a>
                                             </div>
                                         </div>
                                     </div>

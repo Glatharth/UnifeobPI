@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-var configs = require('./../../../../config');
+var configs = require('../../../../config');
 var config = configs.config.masterPage.adminPanel;
 var width = config.header.width;
 var height = config.header.height;

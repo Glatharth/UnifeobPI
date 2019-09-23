@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LoginAdmin from '../../components/masterpage/adminPanel/login/index';
+import LoginAdmin from '../../components/adminpanel/login/index';
 
 export default function login() {
     return (
