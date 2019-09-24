@@ -11,7 +11,7 @@ const list = loadPeoples();
 export default function ListPeoples() {
     return (
         <>
-            <div className="columns is-desktop">
+            <div className="columns is-multiline">
                 {list.map(id =>
                     <div className="column is-two-fifths">
                         <div className="card">
