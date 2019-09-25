@@ -14,13 +14,13 @@ export function loadPeoples() {
                 name: 'Name',
                 color: '#ccc',
                 description: 'Description',
-                note: 3
+                score: 3
               },
               {
                 name: 'Name2',
                 color: '#cfc',
                 description: 'Description2',
-                note: 5
+                score: 5
               }
           ]
         }
@@ -40,13 +40,13 @@ export function loadPeoples() {
               name: 'Name',
               color: '#ccc',
               description: 'Description',
-              note: 3
+              score: 3
             },
             {
               name: 'Name2',
               color: '#cfc',
               description: 'Description2',
-              note: 5
+              score: 5
             }
           ]
         }
@@ -66,13 +66,13 @@ export function loadPeoples() {
                 name: 'Name',
                 color: '#ccc',
                 description: 'Description',
-                note: 3
+                score: 3
               },
               {
                 name: 'Name2',
                 color: '#cfc',
                 description: 'Description2',
-                note: 5
+                score: 5
               }
             ]
           }
@@ -92,13 +92,13 @@ export function loadPeoples() {
                 name: 'Name',
                 color: '#ccc',
                 description: 'Description',
-                note: 3
+                score: 3
               },
               {
                 name: 'Name2',
                 color: '#cfc',
                 description: 'Description2',
-                note: 5
+                score: 5
               }
             ]
           }
@@ -118,13 +118,13 @@ export function loadPeoples() {
                 name: 'Name',
                 color: '#ccc',
                 description: 'Description',
-                note: 3
+                score: 3
               },
               {
                 name: 'Name2',
                 color: '#cfc',
                 description: 'Description2',
-                note: 5
+                score: 5
               }
             ]
           }
@@ -144,13 +144,13 @@ export function loadPeoples() {
                 name: 'Name',
                 color: '#ccc',
                 description: 'Description',
-                note: 3
+                score: 3
               },
               {
                 name: 'Name2',
                 color: '#cfc',
                 description: 'Description2',
-                note: 5
+                score: 5
               }
             ]
           }

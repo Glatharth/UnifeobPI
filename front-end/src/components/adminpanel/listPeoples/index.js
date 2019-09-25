@@ -8,6 +8,13 @@ import {loadPeoples} from "../../../services/api";
 
 const list = loadPeoples();
 
+const tagList = (list) => {
+    {list.information.tags.map((tag, index) =>
+        
+    )}
+}
+
+
 export default function ListPeoples() {
     return (
         <>
@@ -25,6 +32,24 @@ export default function ListPeoples() {
                                     <div className="media-content">
                                         <p className="title is-4">{id.name}</p>
                                         <p className="subtitle is-6">{id.information.psychologist}</p>
+                                        <div className="field is-grouped is-grouped-multiline">
+
+
+
+                                            <div className="control">
+
+                                                <div className="tags has-addons">
+                                                    <span className="tag is-dark">{tag.name}</span>
+                                                    <span className="tag is-info">{tag.score}</span>
+                                                </div>
+
+
+                                            </div>
+
+
+
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div className="content">
