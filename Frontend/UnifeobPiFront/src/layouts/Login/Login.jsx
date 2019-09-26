@@ -1,18 +1,27 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 
 import './login.css';
 
-import api from '../../config/api'
+import api from '../../services/api'
 
 export default function Login() {
   const [data, setData] = useState({})
+  const [redirect, setRedirect] = useState({
+    authenticate: true
+  })
 
   async function handleSubmit(e) {
     e.preventDefault()
     
-    const response = await api.post('/auth/register', data)
+    const response = await api.post('/auth/authenticate', data)
 
-    alert(JSON.stringify(response.data))
+    alert(JSON.stringify(response.data.token))
+
+    const newToken = response.data.token;
+
+    localStorage.setItem('@admin-Token', newToken);
+
   }
 
   return (
@@ -44,7 +53,9 @@ export default function Login() {
           </p>
           
           <p> 
-            <input type="submit" value="Login" /> 
+
+              <input type="submit" value="Login" /> 
+      
           </p>
           
         </form>

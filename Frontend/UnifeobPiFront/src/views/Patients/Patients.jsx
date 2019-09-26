@@ -35,7 +35,7 @@ export default function Patients() {
     <div className="patientsMain">
 
     {patients.map( pt => (
-            <div className="patientsMainOut">
+            <div key={pt.name} className="patientsMainOut">
             <div className="patientsMainBox">
               <img className="patientsMainBoxPhoto"></img>
               <div className="patientsMainBoxItens">

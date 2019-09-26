@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './admin.css';
 
-import { Switch, Route, Link} from 'react-router-dom';
+import { Switch, Route, Link, Redirect} from 'react-router-dom';
 
 import Dashboard from '../../views/Dashboard/Dashboard';
 import Patients from '../../views/Patients/Patients';
@@ -47,14 +47,14 @@ export default function Admin() {
       <header>
 
         <div>
-          <h1 id="Page">Dashboard</h1>
+          <h1 id="Page" >Dashboard</h1>
         </div>
 
         <div>
 
-        <div class="dropdown">
-          <button class="dropbtn" id="dropdown">Botao</button>
-          <div id="dropCont" class="dropdown-content">
+        <div className="dropdown">
+          <button className="dropbtn" id="dropdown">Botao</button>
+          <div id="dropCont" className="dropdown-content">
             <li>Perfil</li>
             <li>Sobre</li>
             <li>Ticket</li>
@@ -73,8 +73,8 @@ export default function Admin() {
 
         <ul>
           {menus.map(menu => (
-            <Link onClick={() => selected(menu.name, menu.page)} to={`/${menu.url}`}>
-              <li className={menu.selected} >{menu.name}</li>
+            <Link key={menu.name} onClick={() => selected(menu.name, menu.page)} to={`/admin/${menu.url}`}>
+              <li key={menu.name} className={menu.selected} >{menu.name}</li>
             </Link>
           ))
           }
@@ -84,15 +84,15 @@ export default function Admin() {
 
       <main>
           <Switch>
-            <Route exact path="/" component={Dashboard}></Route>
-            <Route path="/Dashboard" component={Dashboard}></Route>
-            <Route path="/Patients" component={Patients}></Route>
-            <Route path="/PatientCreate" component={PatientCreate}></Route>
-            <Route path="/PatientView" component={PatientView}></Route>
-            <Route path="/TableList" component={TableList}></Route>
-            <Route path="/Icons" component={Icons}></Route>
-            <Route path="/Maps" component={Maps}></Route>
-            <Route path="/Notifications" component={Notifications}></Route>
+            <Route exact path="/admin" component={Dashboard}></Route>
+            <Route path="/admin/Dashboard" component={Dashboard}></Route>
+            <Route path="/admin/Patients" component={Patients}></Route>
+            <Route path="/admin/PatientCreate" component={PatientCreate}></Route>
+            <Route path="/admin/PatientView" component={PatientView}></Route>
+            <Route path="/admin/TableList" component={TableList}></Route>
+            <Route path="/admin/Icons" component={Icons}></Route>
+            <Route path="/admin/Maps" component={Maps}></Route>
+            <Route path="/admin/Notifications" component={Notifications}></Route>
           </Switch>
       </main>
 

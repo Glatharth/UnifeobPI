@@ -42,7 +42,7 @@ export default function PatientCreate() {
       </div>
 
       <div className="patientsCreateE">
-        <Link to="/Patients" className="patientsCreateEButtons">Cancelar</Link>
+        <Link to="/admin/Patients" className="patientsCreateEButtons">Cancelar</Link>
         <div className="patientsCreateEButtons">Confirmar</div>
       </div>
 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './chat.css';
 
 import io from 'socket.io-client';
-import $ from 'jquery';
 
 import imgt from '../../images/user.jpg';
 
@@ -12,113 +11,44 @@ import { Emoji } from 'emoji-mart';
 
 export default function Chat() {
 
+  const [emojis, setEmojis] = useState(EmojisList);
 
-  var socket = io('http://localhost:3000');
+  const [messages, setMessages] = useState([]);
+
+  const [messageInput, setMessageInput] = useState("");
+
+  const socket = io('http://localhost:3000');
+
+  socket.on('connect', () => {
+    alert('Conectado');
+  })
+
+  socket.on('previousMessages', (messages) => {
+    setMessages(messages);
+  });
+
+  socket.on('receivedMessage', (message) => {
+    setMessages(messages);
+  });
 
   function readKey(e){
-    if(e.which == 13) {
+    if(e.keyCode === 13) {
       chatSubmit();
     }
   }
 
-  function calcHour(){
-
-    var time = new Date();
-
-    var hours = time.getHours();
-    var minutes = time.getMinutes();
-
-    if(hours < 6){
-        return(`${hours}:${minutes} da madrugada`)
-    }
-
-    else if(hours < 12){
-        return(`${hours}:${minutes} da manha`)
-    }
-
-    else if(hours < 18){
-
-        if(hours > 12){hours = hours - 12};
-
-        return(`${hours}:${minutes} da tarde`)
-    }
-
-    else if(hours <= 24 ){
-        hours = hours - 12
-        return(`${hours}:${minutes} da noite`)
-    }
-  }
-
-  function renderMessage(message){
-
-    const you = $('#userName').html();
-    const outher = message.author;
-
-    if(you === outher){
-      $('#mainChat').append(`
-        <div class="messageBody">
-          <div class="messageMainSender">
-            <div class="sender">
-              <div class="messageText">
-                ${message.message}
-              </div>
-              <span class="messageTime">
-                ${message.hour}
-              </span>
-            </div>
-          </div>
-        </div>`
-      );
-    } else {
-      $('#mainChat').append(`
-        <div class="messageBody">
-          <div class="messageMainReceiver">
-            <div class="receiver">
-              <div class="messageText">
-                ${message.message}
-              </div>
-              <span class="messageTime">
-                ${message.hour}
-              </span>
-            </div>
-          </div>
-        </div>`
-      );
-    }
-  }
-
-  socket.on('previousMessages', (messages) => {
-    var message;
-    for(message of messages) {
-      renderMessage(message);
-    }
-  });
-
-  socket.on('receivedMessage', (message) => {
-    renderMessage(message);
-  })
-
   function chatSubmit(){
+    if(messageInput.length){
 
-    var author = $('#userName').html();
-    var message = $('input[name=message]').val();
-    var hour = calcHour();
-
-    if(author.length && message.length){
-      var messageObject = {
-        author,
-        message,
-        hour  
+      let messageObject = {
+        author: "Cesar",
+        message: messageInput,
+        hour:"20:30"  
       };
 
-      renderMessage(messageObject);
       socket.emit('sendMessage', messageObject);
-
-      $('input[name=message]').val("");
     }
   }
-
-  const [emojis, setEmojis] = useState(EmojisList);
 
   return (
     <div className="outChat">
@@ -147,15 +77,27 @@ export default function Chat() {
             <input maxLength="14" placeholder="Pesquisar..." type="text" name="" id=""/>
           </div>
           <div className="sidebarContacts">
+
             <div className="boxContact">
-              <div className="contactPhoto"></div>
-              <div className="contactName"></div>
+              <div className="contactPhoto"><img src={imgt} alt=""/></div>
+              <div className="contactName">Potter</div>
             </div>
+
+            <div className="boxContact">
+              <div className="contactPhoto"><img src={imgt} alt=""/></div>
+              <div className="contactName">Claudio</div>
+            </div>
+
           </div>
+
         </aside>
 
       <main id="mainChat">
-
+       {
+         messages.map(msg => (
+           <h2>{msg.message}</h2>
+         ))
+       }
       </main>
 
         <div id="boxEmojis" className="boxEmojisClose">
@@ -171,7 +113,12 @@ export default function Chat() {
             <MdMood id="emojiButton" size={35}/>
           </div>
           <div className="sendMessageText">
-            <input onKeyPress={readKey} name="message" id="message"></input>
+            <input 
+                onKeyDown={readKey}
+                onChange={e => setMessageInput(e.target.value)}
+                name="message" id="message"
+                value={messageInput}
+            />
           </div>
           <div className="sendMessageVoice">
             <MdKeyboardVoice id="voiceButton" size={35}/>

@@ -145,14 +145,16 @@
   width: 100%;
   height: 80vh;
   overflow: auto;
-
-  background: rgba(0,0,0,0.2);
+  background: rgba(0,0,0, 0.2);
 }
 
 .boxContact {
-  width: 100%;
+  margin: 10px auto;
+  width: 98%;
   height: 10vh;
-  border: 2px solid black;
+  border: 2px solid white;
+  border-radius: 15px;
+  background: rgba(255,255,255, 0.1);
 
   display: flex;
   align-items: center;
@@ -163,14 +165,27 @@
   width: 30%;
   height: 100%;
 
-  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactPhoto img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .contactName {
   width: 70%;
   height: 100%;
+  font-size: 16pt;
+  padding-left: 10px;
 
-  background: green;
+  display: flex;
+  align-items: center;
 }
 
 .outChat main {
@@ -178,6 +193,8 @@
 
   background: rgba(255,255,255, 0.8);
   overflow: auto;
+
+  color:black;
 }
 
 .messageBody {

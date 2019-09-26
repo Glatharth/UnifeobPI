@@ -18,25 +18,5 @@
     "name":"Giovanny", 
     "description":"Vive na Disney",
     "gravity":"red"
-  },
-  {
-    "name":"Cesar", 
-    "description":"Assiste Supernatural",
-    "gravity":"red"
-  },
-  {
-    "name":"Gian", 
-    "description":"Joga CsGo",
-    "gravity":"green"
-  },
-  {
-    "name":"Paulo", 
-    "description":"Joga Tibia",
-    "gravity":"yellow"
-  },
-  {
-    "name":"Giovanny", 
-    "description":"Vive na Disney",
-    "gravity":"red"
   }
 ]
