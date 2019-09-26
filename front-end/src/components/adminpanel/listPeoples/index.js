@@ -8,25 +8,37 @@ import {loadPeoples} from "../../../services/api";
 
 const list = loadPeoples();
 
-const tagList = (list) => {
-    {list.information.tags.map((tag, index) =>
-        
-    )}
-}
+const max_taglist = 3;
+const ConditionList = (props) => {
+    let tags;
+    return (
+            {props.tags.map((id, index) =>
+                <div className="control">
+                    <div className="tags has-addons">
+                        <span className="tag is-dark">{props.name}</span>
+                        <span className="tag is-info">{props.score}</span>
+                    </div>
+                </div>
+            )}
+        );
+    }else{
+        return (<a href={"/"}>More...</a>);
+    }
+};
 
 
 export default function ListPeoples() {
     return (
         <>
             <div className="columns is-multiline">
-                {list.map(id =>
+                {list.map((id) =>
                     <div className="column is-two-fifths">
                         <div className="card">
                             <div className="card-content">
                                 <div className="media">
                                     <div className="media-left">
                                         <figure className="image is-96x96">
-                                            <img src={id.photo} alt="Placeholder image"/>
+                                            <img src={id.photo} alt="Placeholder"/>
                                         </figure>
                                     </div>
                                     <div className="media-content">
@@ -36,15 +48,7 @@ export default function ListPeoples() {
 
 
 
-                                            <div className="control">
-
-                                                <div className="tags has-addons">
-                                                    <span className="tag is-dark">{tag.name}</span>
-                                                    <span className="tag is-info">{tag.score}</span>
-                                                </div>
-
-
-                                            </div>
+                                            <ConditionList tags={id.information.tags}/>
 
 
 
