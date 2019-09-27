@@ -8,22 +8,26 @@ import {loadPeoples} from "../../../services/api";
 
 const list = loadPeoples();
 
-const max_taglist = 3;
-const ConditionList = (props) => {
-    let tags;
-    return (
-            {props.tags.map((id, index) =>
+const maxTaglib = 3;
+
+let str;
+let ConditionList;
+ConditionList = (props) => {
+    props.tags.map((id, index) => {
+        if (index <= maxTaglib) {
+            str += [
                 <div className="control">
                     <div className="tags has-addons">
-                        <span className="tag is-dark">{props.name}</span>
-                        <span className="tag is-info">{props.score}</span>
+                        <span className="tag is-dark">{id.name}</span>
+                        <span className="tag is-info">{id.score}</span>
                     </div>
                 </div>
-            )}
-        );
-    }else{
-        return (<a href={"/"}>More...</a>);
-    }
+            ];
+        } else {
+            str += [<a href={'/'} alt="Entrar no perfil">More...</a>];
+        }
+    });
+    return str;
 };
 
 
