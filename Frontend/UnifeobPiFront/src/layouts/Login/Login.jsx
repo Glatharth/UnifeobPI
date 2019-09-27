@@ -6,10 +6,8 @@ import './login.css';
 import api from '../../services/api'
 
 export default function Login() {
+  
   const [data, setData] = useState({})
-  const [redirect, setRedirect] = useState({
-    authenticate: true
-  })
 
   async function handleSubmit(e) {
     e.preventDefault()

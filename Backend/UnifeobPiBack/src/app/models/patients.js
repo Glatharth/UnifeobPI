@@ -8,6 +8,19 @@ const PatientsSchema = new mongoose.Schema({
     type: String
   },
 
+  age: {
+    type: Number
+  },
+
+  cpf: {
+    type: String,
+    unique: true
+  },
+
+  rg: {
+    type: String
+  },
+
   email: {
     type: String,
     unique: true,
@@ -19,6 +32,15 @@ const PatientsSchema = new mongoose.Schema({
     type: String,
     required: true,
     select: false
+  },
+
+  gravity: {
+    type: String,
+    default: "green"
+  },
+
+  description: {
+    type: String
   },
 
   color: {

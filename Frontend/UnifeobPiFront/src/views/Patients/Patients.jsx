@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {Link} from 'react-router-dom';
 
 import './Patients.css';
 
-import PatiensList from '../../components/PatientsList.json';
+import api from '../../services/api';
 
 export default function Patients() {
 
-  const [patients, setPatients] = useState(PatiensList);
+  const [patients, setPatients] = useState([]);
+
+  useEffect(async () => {
+    const response = await api.get('/dashboard/patients/');
+    setPatients(response.data.patients);
+  }, [])
 
   return (
 
