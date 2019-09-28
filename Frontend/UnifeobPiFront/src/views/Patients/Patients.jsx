@@ -10,9 +10,12 @@ export default function Patients() {
 
   const [patients, setPatients] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
+    async function fetchData() {
     const response = await api.get('/dashboard/patients/');
     setPatients(response.data.patients);
+    }
+    fetchData();
   }, [])
 
   return (

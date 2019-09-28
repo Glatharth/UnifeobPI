@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+
+import { Redirect } from 'react-router-dom';
 
 import './login.css';
 
 import api from '../../services/api'
+
+import {isAuthenticated} from '../../services/auth'
 
 export default function Login() {
   
@@ -22,7 +25,13 @@ export default function Login() {
 
   }
 
+  const [toHome, setToHome] = useState(isAuthenticated);
+
   return (
+
+  <>
+
+  {toHome ? <Redirect to="/"/>: null}
 
   <div className="ini">
     <div class="content">      
@@ -50,10 +59,8 @@ export default function Login() {
               onChange={e=> setData({...data, password: e.target.value})} /> 
           </p>
           
-          <p> 
-
-              <input type="submit" value="Login" /> 
-      
+          <p>
+            <input type="submit" value="Login" />  
           </p>
           
         </form>
@@ -62,5 +69,8 @@ export default function Login() {
       
     </div>
   </div>  
+
+    </>
+
   );
 }
