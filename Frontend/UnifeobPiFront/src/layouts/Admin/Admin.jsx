@@ -7,7 +7,6 @@ import { Switch, Route, Link, Redirect} from 'react-router-dom';
 import Dashboard from '../../views/Dashboard/Dashboard';
 import Patients from '../../views/Patients/Patients';
 import PatientCreate from '../../views/PatientCreate/PatientCreate';
-import PatientView from '../../views/PatientView/PatientView';
 import TableList from '../../views/TableList/TableList';
 import Icons from '../../views/Icons/Icons';
 import Maps from '../../views/Maps/Maps';
@@ -88,7 +87,6 @@ export default function Admin() {
             <Route path="/admin/Dashboard" component={Dashboard}></Route>
             <Route path="/admin/Patients" component={Patients}></Route>
             <Route path="/admin/PatientCreate" component={PatientCreate}></Route>
-            <Route path="/admin/PatientView" component={PatientView}></Route>
             <Route path="/admin/TableList" component={TableList}></Route>
             <Route path="/admin/Icons" component={Icons}></Route>
             <Route path="/admin/Maps" component={Maps}></Route>
