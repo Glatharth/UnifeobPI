@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './chat.css';
 
 import io from 'socket.io-client';
@@ -17,22 +17,27 @@ export default function Chat() {
 
   const [messageInput, setMessageInput] = useState("");
 
-  const socket = io('http://localhost:3000');
+  let socket;
 
-  socket.on('connect', () => {
-    alert('Conectado');
-  })
+  useEffect(() => {
+    socket = io('http://localhost:3000');
 
-  socket.on('previousMessages', (messages) => {
-    setMessages(messages);
-  });
-
-  socket.on('receivedMessage', (message) => {
-    setMessages(messages);
-  });
+    socket.on('connect', () => {
+      alert('Conectado');
+    })
+  
+    socket.on('previousMessages', (messages) => {
+      setMessages(messages);
+    });
+  
+    socket.on('receivedMessage', (message) => {
+      setMessages(messages);
+    });
+  }, [])
 
   function readKey(e){
     if(e.keyCode === 13) {
+      console.log(e);
       chatSubmit();
     }
   }

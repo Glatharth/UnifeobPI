@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import './admin.css';
 
+import { getCompany } from '../../services/auth';
+
 import { Switch, Route, Link, Redirect} from 'react-router-dom';
 
 import Dashboard from '../../views/Dashboard/Dashboard';
@@ -22,6 +24,8 @@ export default function Admin() {
     { page: "Maps", url:"Maps", name: "MAPS" },
     { page: "Notifications", url:"Notifications", name: "NOTIFICATIONS" }
   ])
+
+  const [company, setCompany] = useState(getCompany)
 
   function selected(name, page){
 
@@ -67,7 +71,7 @@ export default function Admin() {
 
       <aside id="aside" className="aside">
         <div className="menu" id="menuTitle">
-          <h1>Psicotec</h1>
+          <h1>{company}</h1>
         </div>
 
         <ul>

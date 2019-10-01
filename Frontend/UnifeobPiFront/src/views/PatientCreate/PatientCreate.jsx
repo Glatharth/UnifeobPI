@@ -6,7 +6,7 @@ import api from '../../services/api';
 
 import './PatientCreate.css';
 
-export default function PatientCreate() {
+export default function PatientCreate(props) {
 
   const [data, setData] = useState({})
 
@@ -15,7 +15,7 @@ export default function PatientCreate() {
 
     const response = await api.post('/dashboard/patients', data)
 
-    alert(JSON.stringify(response.data))
+    props.history.push("/admin/Patients");
   }
 
   return (

@@ -8,8 +8,6 @@ import api from '../../services/api';
 
 export default function Patients() {
 
-  const [control, setControl] = useState("")
-
   const [data, setData] = useState([]);
 
   const [patients, setPatients] = useState([]);
@@ -20,7 +18,7 @@ export default function Patients() {
     setPatients(response.data.patients);
     }
     fetchData();
-  }, [control])
+  }, [patients])
 
   function patientSelected(pt){
     setData(pt);
@@ -34,18 +32,38 @@ export default function Patients() {
     document.querySelector('#formPatient').style.display = 'none';
   }
 
-  function alterPatient(e){
+  async function alterPatient(e){
     e.preventDefault();
 
-    const response = api.put(`/dashboard/patients/${data._id}`, data);
-    setControl(control + 1);
+    const response  = await api.put(`/dashboard/patients/${data._id}`, data);
+
+    const { patient } = response.data
+
+    const newPatients = patients.map(p => {
+      if (p._id === patient._id) {
+        return patient;
+      }
+
+      return p;
+    })
+
+    setPatients(newPatients)
+
+    cancel();
+  }
+
+  async function deletePatient(e){
+    e.preventDefault();
+
+    const response = await api.delete(`/dashboard/patients/${data._id}`);
+
     cancel();
   }
 
   return (
     <>
 
-    <form id="formPatients" method="post" action="">
+    <div id="formPatients">
 
     <div id="patients" className="patients">
 
@@ -87,11 +105,11 @@ export default function Patients() {
 
     </div>
 
-    </form>
+    </div>
 
 {/* Patient View */}
 
-<form id="formPatient" method="post" action="">
+<div id="formPatient" method="post" action="">
 
 <div className="patientsView">
 
@@ -159,7 +177,7 @@ export default function Patients() {
   </div>
 
   <div className="patientsViewEOption">
-      <div className="patientsViewEButtonB" >Apagar</div>
+      <div className="patientsViewEButtonB" onClick={deletePatient}>Apagar</div>
   </div>
 
   <div className="patientsViewEOption">
@@ -173,7 +191,7 @@ export default function Patients() {
 
 </div>
 
-</form>
+</div>
 
   </>
   );

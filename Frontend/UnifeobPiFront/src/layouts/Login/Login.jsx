@@ -3,12 +3,13 @@ import React, {useState} from 'react';
 import { Redirect } from 'react-router-dom';
 
 import './login.css';
+import './login.js';
 
 import api from '../../services/api'
 
 import {isAuthenticated} from '../../services/auth'
 
-export default function Login() {
+export default function Login(props) {
   
   const [data, setData] = useState({})
 
@@ -17,11 +18,15 @@ export default function Login() {
     
     const response = await api.post('/auth/authenticate', data)
 
-    alert(JSON.stringify(response.data.token))
-
     const newToken = response.data.token;
+    const newCompany = response.data.admin.company;
+
+    alert(JSON.stringify(newCompany));
 
     localStorage.setItem('@admin-Token', newToken);
+    localStorage.setItem('@admin-Company', newCompany);
+
+    props.history.push("/");
 
   }
 
@@ -60,7 +65,7 @@ export default function Login() {
           </p>
           
           <p>
-            <input type="submit" value="Login" />  
+            <input id="btnLogin" type="submit" value="Login" />  
           </p>
           
         </form>
