@@ -29,6 +29,16 @@
                        'a f';
 }
 
+@media (max-width: 750px){
+  .chatConteiner {
+    grid-template-columns: 0fr 4fr;
+  }
+
+  aside{
+    display: none;
+  }
+}
+
 .chatConteinerheader {
   grid-area: h;
 
@@ -121,9 +131,9 @@
 
 .sidebarSearch {
   width: 100%;
-  height: 7vh;
+  height: 10vh;
 
-  background: rgba(0,0,0,0.3);
+  background: rgba(0,0,0,0.1);
 
   display: flex;
   align-items: center;
@@ -133,7 +143,7 @@
 .sidebarSearch input {
 
   width: 80%;
-  height: 60%;
+  height: 28px;
   font-size: 16px;
   border-radius: 15px;
   border: none;
@@ -143,9 +153,10 @@
 
 .sidebarContacts {
   width: 100%;
-  height: 80vh;
+  height: 77vh;
   overflow: auto;
   background: rgba(0,0,0, 0.2);
+  transition: 0.5s;
 }
 
 .boxContact {
@@ -155,10 +166,16 @@
   border: 2px solid white;
   border-radius: 15px;
   background: rgba(255,255,255, 0.1);
+  transition: 0.5s;
+  cursor: pointer;
 
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.boxContact:hover {
+  background: rgba(255,255,255, 0.2);
 }
 
 .contactPhoto {
@@ -219,7 +236,7 @@
 .sender {
   float: right;
   width: auto;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(255,255,255, 0.5);
   border-radius: 10px 10px 0 10px;
   padding: 4px 10px 7px;
   font-size: 12px;
@@ -232,7 +249,7 @@
   width: auto;
   padding: 4px 10px 7px;
   border-radius: 10px 10px 10px 0;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.1);
   font-size: 12px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
   word-wrap: break-word;
@@ -249,18 +266,19 @@
   justify-items: center;
   align-items: center;
   display: flex;
-  font-weight: 200;
+  font-weight: 600;
+  color: #444;
 }
 
 .messageTime {
   margin-left: 50px;
   font-size: 12px;
   text-align: right;
-  color: #9a9a9a;
+  color: #444;
   float: right;
 }
 
-.boxEmojis {
+.boxEmojisOpen {
   background: white;
   width: 100%;
   height: 100%;
@@ -340,4 +358,292 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+/* ANIMACAO */
+
+
+/* INTRO */
+
+.chatConteinerheader{
+  animation: intro 1s;
+  animation-fill-mode: backwards;
+}
+
+aside {
+  animation: intro 1s;
+  animation-fill-mode: backwards;
+}
+
+footer {
+  animation: intro 1s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes intro {
+  from{
+    opacity: 0;
+  }to{
+    opacity: 1;
+  }
+}
+
+/* ASIDE HEADER: PHOTO, USERNAME */
+
+#photo {
+  animation: p 1s;
+  animation-fill-mode: backwards;
+}
+
+#userName {
+  animation: u 1s;
+  animation-delay: 0.3s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes p {
+  from{
+    opacity: 0;
+    transform: scale(0.5);
+
+  }to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes u {
+  from{
+    opacity: 0;
+    transform: translateX(-35px);
+  }to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ASIDE SIDEBARSEARCH: SEARCHCONTACTS */
+
+#searchContacts {
+  animation: sc 1s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes sc {
+  from{
+    opacity: 0;
+    transform: scale(0.8);
+
+  }to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ASIDE SIDEBARCONTACTS: BOXCONTACT, CONTACTPHOTO, CONTACTNAME */
+
+.boxContact {
+  animation: bc 1.5s;
+  animation-delay: 0.7s;
+  animation-fill-mode: backwards;
+}
+
+.contactPhoto {
+  animation: bp 1s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+}
+
+.contactName {
+  animation: bn 1s;
+  animation-delay: 1.5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes bc {
+  from{
+    opacity: 0;
+    transform:  translateY(-500px);
+
+  }to{
+    opacity: 1;
+    transform:  translateY(0);
+  }
+}
+
+@keyframes bp {
+  from{
+    opacity: 0;
+    transform: scale(0.5);
+
+  }to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bn {
+  from{
+    opacity: 0;
+    transform: translateX(-35px);
+  }to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* CHATCONTAINERHEADER: CONTACTPHOTO, CONTACTNAME, CONTACT DESCRIPTION */
+
+#contactPhoto {
+  animation: cp 1s;
+  animation-fill-mode: backwards;
+}
+
+#contactName {
+  animation: cn 1s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+}
+
+#contactDescription {
+  animation: cd 1s linear;
+  animation-delay: 1.5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes cp{
+  from{
+    opacity: 0;
+    transform: scale(0.5);
+
+  }to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes cn{
+  from{
+    opacity: 0;
+    transform: translateX(-15px);
+  }to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes cd{
+  from{
+    opacity: 0;
+    transform: translateX(-15px);
+  }to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* MAINCHAT: SENDER, RECEIVER, MESSAGETEXT MESSAGETIME */
+
+.sender {
+  animation: send 0.5s;
+  animation-fill-mode: backwards;
+}
+
+.receiver {
+  animation: receiv 1s;
+  animation-fill-mode: backwards;
+}
+
+.sender .messageText {
+  animation: msgtxts 0.5s;
+  animation-fill-mode: backwards;
+}
+
+.receiver .messageText {
+  animation: msgtxtr 0.5s;
+  animation-fill-mode: backwards;
+}
+
+.messageTime {
+  animation: msgtm 1.5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes send {
+  0%{
+    opacity: 0;
+    transform: translateX(+10px) translateY(+3px) scale(0.98);
+  }100%{
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+@keyframes receiv {
+  0%{
+    opacity: 0;
+    transform: translateX(-10px) translateY(+3px) scale(0.98);
+  }100%{
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+@keyframes msgtxts {
+  0%{
+    opacity: 0.5;
+    transform: translateX(+10px);
+  }100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes msgtxtr {
+  0%{
+    opacity: 0.5;
+    transform: translateX(-10px);
+  }100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes msgtm {
+  0%{
+    opacity: 0;
+  }100%{
+    opacity: 1;
+  }
+}
+
+/* FOOTER: EMOJI, INPUT, VOICE */
+
+#emojiButton {
+  animation: fa 1s;
+  animation-delay: 0.5s;
+  animation-fill-mode: backwards;
+}
+
+#message {
+  animation: fa 1s;
+  animation-delay: 0.7s;
+  animation-fill-mode: backwards;
+}
+
+#voiceButton {
+  animation: fa 1s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes fa {
+  from{
+    opacity: 0;
+    transform: translateX(-35px) scale(0.8);
+  }to{
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
 }

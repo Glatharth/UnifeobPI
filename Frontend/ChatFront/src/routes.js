@@ -1,14 +1,13 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import { isAuthenticated } from './services/auth';
 
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-
-import Admin from './layouts/Admin/Admin';
-import Login from './layouts/Login/Login';
+import Login from './pages/Login';
+import Chat from './pages/Chat';
 
 // function isAuthenticated(){
-//   return false;
+//   return true;
 // }
 
 function PrivateRoute({ component: Component, ...rest }) {
@@ -27,9 +26,10 @@ function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <PrivateRoute exact path="/" component={Admin}/>
-        <PrivateRoute path="/admin" component={Admin}/>
-        <Route  path="/Login" component={Login}/>
+        <PrivateRoute exact path="/" component={Chat}/>
+        <PrivateRoute path="/chat" component={Chat}/>
+        <Route  path="/chat" component={Chat}/>
+        <Route  path="/login" component={Login}/>
       </Switch>
   </BrowserRouter>
   );

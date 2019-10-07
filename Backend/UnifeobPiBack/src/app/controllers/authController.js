@@ -5,12 +5,13 @@ const jwt = require('jsonwebtoken');
 const authConfig = require('../../config/auth')
 
 const Admin = require('../models/Admin')
+const Patients = require('../models/patients')
 
 const router = express.Router();
 
 function generateToken(params = {}){
   return jwt.sign(params, authConfig.secret, {
-    expiresIn: 86400,
+    expiresIn: 9999999999999999999999,
   });
 }
 
@@ -52,6 +53,26 @@ router.post('/authenticate', async (req, res) => {
   res.send({
     admin,
     token: generateToken({ id: admin.id })
+  });
+
+})
+
+router.post('/login', async (req, res) => {
+  const {email, password} = req.body;
+
+  const patients = await Patients.findOne({ email }).select('+password');
+
+  if(!patients)
+    return res.status(400).send({ erro: "Usuario nao encontrado" })
+
+  if(!await bcrypt.compare(password, patients.password))
+    return res.status(400).send({ erro: "Senha invalida" })
+
+    patients.password = undefined;
+
+  res.send({
+    patients,
+    token: generateToken({ id: patients.id })
   });
 
 })

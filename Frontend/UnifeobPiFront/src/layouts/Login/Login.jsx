@@ -3,13 +3,12 @@ import React, {useState} from 'react';
 import { Redirect } from 'react-router-dom';
 
 import './login.css';
-import './login.js';
 
 import api from '../../services/api'
 
 import {isAuthenticated} from '../../services/auth'
 
-export default function Login(props) {
+export default function Login({ history }) {
   
   const [data, setData] = useState({})
 
@@ -21,12 +20,10 @@ export default function Login(props) {
     const newToken = response.data.token;
     const newCompany = response.data.admin.company;
 
-    alert(JSON.stringify(newCompany));
-
     localStorage.setItem('@admin-Token', newToken);
     localStorage.setItem('@admin-Company', newCompany);
 
-    props.history.push("/");
+    history.push("/");
 
   }
 

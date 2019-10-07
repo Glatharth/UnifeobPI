@@ -7,10 +7,17 @@ const io = require('socket.io')(server);
 
 const Message = require('./models/Message')
 
+// Usuarios conectados
+const connectedUsers = {};
+
 io.on('connection', async socket => {
   try{
 
-    console.log('Socket conectado: ' + socket.id )
+    console.log(socket.id)
+
+    const { patient_id } = socket.handshake.query;
+
+    connectedUsers[patient_id] = socket.id;
 
     const oldMessages = await Message.find()
 
