@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
+import {emojify} from 'react-emojione';
+
+// Api
+import api from '../../services/api';
+
 // Css
 import './styles.css';
 
@@ -27,6 +32,20 @@ export default function Chat({ history }) {
   const [emojis, setEmojis] = useState(EmojisList);
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState();
+  const [contacts, setContacts] = useState([]);
+  const [privy, setPrivy] = useState([]);
+
+  function contactSelected(contact){
+    setPrivy(contact);
+  }
+
+  useEffect(() => {
+    async function fetchData() {
+    const response = await api.get('/dashboard/patients/');
+    setContacts(response.data.patients);
+    }
+    fetchData();
+  }, [contacts])
 
   const patient_id = getPatient();
   const socket = useMemo(() => socketio('http://localhost:3000', {
@@ -118,8 +137,8 @@ export default function Chat({ history }) {
             <img id="contactPhoto" src={imgt} alt=""/>
           </div>
           <div className="navbarHeaderTexts">
-            <div id="contactName" className="navbarHeaderTextsContact"><h2>Potter</h2></div>
-            <div id="contactDescription" className="navbarHeaderTextsDescription"><h3>Nao é por que acabou que nao foi pra sempre um dia</h3></div>
+            <div id="contactName" className="navbarHeaderTextsContact"><h2>{privy.name}</h2></div>
+            <div id="contactDescription" className="navbarHeaderTextsDescription"><h3>{privy.description}</h3></div>
           </div>
         </div>
 
@@ -138,15 +157,14 @@ export default function Chat({ history }) {
 
           <div className="sidebarContacts">
 
-            <div className="boxContact">
-              <div className="contactPhoto"><img src={imgt} alt=""/></div>
-              <div className="contactName">Potter</div>
-            </div>
-
-            <div className="boxContact" onClick={logOut}>
-              <div className="contactPhoto"><img src={imgt} alt=""/></div>
-              <div className="contactName">Claudio</div>
-            </div>
+            {
+              contacts.map(contact => (
+                <div className="boxContact" key={contact._id} onClick={() => contactSelected(contact)}>
+                  <div className="contactPhoto"><img src={imgt} alt=""/></div>
+                  <div className="contactName">{contact.name}</div>
+                </div>
+              ))
+            }
 
           </div>
 
@@ -162,7 +180,7 @@ export default function Chat({ history }) {
             <div class="messageMainSender">
               <div class="sender">
                 <div class="messageText">
-                  {msg.message}
+                  {emojify(msg.message)}
                 </div>
                 <span class="messageTime">
                   {msg.hour}
@@ -177,7 +195,7 @@ export default function Chat({ history }) {
             <div class="messageMainReceiver">
               <div class="receiver">
                 <div class="messageText">
-                  {msg.message}
+                  {emojify(msg.message)}
                 </div>
                 <span class="messageTime">
                   {msg.hour}
@@ -192,7 +210,7 @@ export default function Chat({ history }) {
 
         <div id="boxEmojis" className="boxEmojisClose">
         {emojis.map( emj => (
-          <div>
+          <div className="emjPosition">
           <Emoji size={35} key={emj.id} emoji={emj.name} set='twitter' skin={2}/>
           </div>
         ))}
@@ -211,7 +229,7 @@ export default function Chat({ history }) {
             />
           </div>
           <div className="sendMessageVoice">
-            <MdKeyboardVoice id="voiceButton" size={35}/>
+            <MdKeyboardVoice id="voiceButton" size={35} onClick={logOut}/>
           </div>
         </footer>
 

@@ -207,16 +207,17 @@
 
 .outChat main {
   grid-area: m;
-
   background: rgba(255,255,255, 0.8);
   overflow: auto;
-
   color:black;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .messageBody {
   width: auto;
-  height: 10vh;
+  height: auto;
 }
 
 .messageMainSender {
@@ -230,7 +231,7 @@
 .messageMainReceiver {
   width: 100%;
   max-width: 60%;
-  padding-left: 20px;
+  padding: 3px 20px;
 }
 
 .sender {
@@ -358,6 +359,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.emjPosition {
+  float: left;
 }
 
 
@@ -543,7 +548,7 @@ footer {
   }
 }
 
-/* MAINCHAT: SENDER, RECEIVER, MESSAGETEXT MESSAGETIME */
+/* MAINCHAT: SENDER, RECEIVER, MESSAGETEXT MESSAGETIME
 
 .sender {
   animation: send 0.5s;
@@ -616,7 +621,7 @@ footer {
   }100%{
     opacity: 1;
   }
-}
+} */
 
 /* FOOTER: EMOJI, INPUT, VOICE */
 
