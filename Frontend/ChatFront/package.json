@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
-    "emoji-mart": "^2.11.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-emojione": "^5.0.1",

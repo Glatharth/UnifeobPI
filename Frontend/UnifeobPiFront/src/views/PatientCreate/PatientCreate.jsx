@@ -26,13 +26,13 @@ export default function PatientCreate(props) {
 
         <div className="patientsCreateA">
           <div className="patientsCreateAName">
-            <input placeholder="Nome" type="text"
+            <input placeholder="nome" type="text"
             name="patientsCreateName" id="patientsCreateName"
             onChange={e=> setData({...data, name: e.target.value})}
             />
           </div>
           <div className="patientsCreateAAge">
-            <input placeholder="Idade" type="text"
+            <input placeholder="data de nascimento" type="date"
             name="patientsCreateAge" id="patientsCreateAge"
             onChange={e=> setData({...data, age: e.target.value})}
             />
@@ -41,13 +41,13 @@ export default function PatientCreate(props) {
 
         <div className="patientsCreateB">
           <div className="patientsCreateBCpf">
-            <input placeholder="CPF" type="text" 
+            <input placeholder="cpf" type="text" 
             name="patientsCreateCpf" id="patientsCreateCpf"
             onChange={e=> setData({...data, cpf: e.target.value})}
             />
           </div>
           <div className="patientsCreateBRg">
-            <input placeholder="RG" type="text" 
+            <input placeholder="rg" type="text" 
             name="patientsCreateRg" id="patientsCreateRg"
             onChange={e=> setData({...data, rg: e.target.value, password: e.target.value})}
             />
@@ -56,7 +56,7 @@ export default function PatientCreate(props) {
 
         <div className="patientsCreateC">
           <div className="patientsCreateCEmail">
-            <input placeholder="E-mail" type="text" 
+            <input placeholder="E-mail" type="email" 
             name="patientsCreateEmail" id="patientsCreateEmail"
             onChange={e=> setData({...data, email: e.target.value})}
             />
@@ -68,7 +68,7 @@ export default function PatientCreate(props) {
 
         <div className="patientsCreateD">
           <div className="patientsCreateDDescription">
-            <textarea placeholder="Descrição..." 
+            <textarea placeholder="descrição..." 
             name="patientsCreateDescription" id="patientsCreateDescription"
             onChange={e=> setData({...data, description: e.target.value})}
             />

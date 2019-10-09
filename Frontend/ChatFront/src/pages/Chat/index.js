@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
-import {emojify} from 'react-emojione';
+// Emojis
+import Emojify , {emojify} from 'react-emojione';
+import EmojisEmoji from './Emojis/EmojisListEmoji.json';
+import EmojisNature from './Emojis/EmojisListNature.json';
+import EmojisFood from './Emojis/EmojisListFood.json';
 
-// Api
+// Api 
 import api from '../../services/api';
 
 // Css
@@ -12,11 +16,8 @@ import './styles.css';
 import { logout, getPatient, getName } from '../../services/auth';
 
 // Icones
-import { MdMood, MdKeyboardVoice } from 'react-icons/md';
+import { MdMood, MdKeyboardVoice, MdInsertEmoticon, MdFace, MdFavoriteBorder, MdPets, MdRestaurant, MdMap } from 'react-icons/md';
 
-// Emojis
-import EmojisList from './EmojisList';
-import { Emoji } from 'emoji-mart';
 
 // Imagens
 import imgt from './../../images/user.jpg'
@@ -27,13 +28,23 @@ import socketio from 'socket.io-client';
 export default function Chat({ history }) {
 
   // eslint-disable-next-line
-  const [name, setName] = useState(getName);
+  const [emojisEmoji, setEmojisEmoji] = useState(EmojisEmoji);
+
   // eslint-disable-next-line
-  const [emojis, setEmojis] = useState(EmojisList);
+  const [name, setName] = useState(getName);
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState();
   const [contacts, setContacts] = useState([]);
   const [privy, setPrivy] = useState([]);
+
+  const [emjBtn, setEmjBtn] = useState([
+    {emojiOption: <MdInsertEmoticon size={35}/>},
+    {emojiOption: <MdFace size={35}/>},
+    {emojiOption: <MdFavoriteBorder size={35}/>},
+    {emojiOption: <MdPets size={35}/>},
+    {emojiOption: <MdRestaurant size={35}/>},
+    {emojiOption: <MdMap size={35}/>}
+  ])
 
   function contactSelected(contact){
     setPrivy(contact);
@@ -128,9 +139,17 @@ export default function Chat({ history }) {
     }
   }
 
+
+  const confEmojis = {
+    style: {
+      height: 35,
+      width: 35,
+    }
+  }
+
   return (
     <div className="outChat">
-      <div id="chatMain" className="chatConteiner">
+      <div id="chatMain" className="chatConteinerEmojis">
 
         <div className="chatConteinerheader">
           <div className="navbarHeaderPhoto">
@@ -208,12 +227,28 @@ export default function Chat({ history }) {
        }
       </main>
 
-        <div id="boxEmojis" className="boxEmojisClose">
-        {emojis.map( emj => (
-          <div className="emjPosition">
-          <Emoji size={35} key={emj.id} emoji={emj.name} set='twitter' skin={2}/>
+        <div id="boxEmojis" className="boxEmojisOpen">
+
+          <div className="boxEmojisContent">
+            {emojisEmoji.map( emj => (
+              <div className="emojiDiv">
+                {emojify(emj.name, confEmojis)}
+              </div>
+            ))}           
+          </div>         
+
+          <div className="boxEmojisOptions">
+
+            {
+              emjBtn.map(emj => (
+                <div className="boxEmojisOption">
+                  {emj.emojiOption}
+                </div>
+              ))
+            }
+
           </div>
-        ))}
+        
         </div>
 
         <footer>

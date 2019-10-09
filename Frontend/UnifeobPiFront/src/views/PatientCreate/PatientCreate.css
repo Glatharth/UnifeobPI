@@ -18,10 +18,32 @@ form {
                        'e'; 
 }
 
+.patientsCreate input::-webkit-input-placeholder {
+  color: rgba( 0,0,0,0.5);
+  font-style: bold;
+  font-style: oblique;
+}
+
+#patientsCreateEmail {
+  text-transform: lowercase;
+}
+
 .patientsCreate input {
   width: 70%;
-  font-size: 30px;
+  font-size: 20pt;
+  border: none;
+  border-bottom: 5px solid darkcyan;
+  color: #444;
+  border-radius: 3px;
+  transition: 1s;
+  border-bottom-style: outset;
+  background: none;
 }
+
+.patientsCreate input:focus {
+  border-bottom: 5px solid darkcyan;
+}
+
 
 .patientsCreateA {
   grid-area: a;
