@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.12",
+    "body-parser": "latest"
+  },
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "start": "node src/app.js"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}
