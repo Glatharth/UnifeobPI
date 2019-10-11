@@ -1,9 +1,10 @@
 {
   "dependencies": {
+    "body-parser": "latest",
+    "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "mongoose": "^5.6.12",
-    "body-parser": "latest"
+    "mongoose": "^5.7.4"
   },
   "scripts": {
     "dev": "nodemon src/app.js",
