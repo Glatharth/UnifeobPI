@@ -4,6 +4,9 @@ mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack-y8xkp.mongodb.net/
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
+mongoose.set('useCreateIndex', true);
+
 mongoose.Promise = global.Promise;
 
 module.exports = mongoose;

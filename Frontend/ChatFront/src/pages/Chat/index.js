@@ -1,10 +1,14 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
 // Emojis
-import Emojify , {emojify} from 'react-emojione';
+import {emojify} from 'react-emojione';
+import EmojisFavorites from './Emojis/EmojisListFavorites.json';
 import EmojisEmoji from './Emojis/EmojisListEmoji.json';
+import EmojisFace from './Emojis/EmojisListFace.json';
+import EmojisSymbols from './Emojis/EmojisListSymbols.json';
 import EmojisNature from './Emojis/EmojisListNature.json';
 import EmojisFood from './Emojis/EmojisListFood.json';
+import EmojisFlags from './Emojis/EmojisListFlags.json';
 
 // Api 
 import api from '../../services/api';
@@ -16,8 +20,7 @@ import './styles.css';
 import { logout, getPatient, getName } from '../../services/auth';
 
 // Icones
-import { MdMood, MdKeyboardVoice, MdInsertEmoticon, MdFace, MdFavoriteBorder, MdPets, MdRestaurant, MdMap } from 'react-icons/md';
-
+import { MdMood, MdKeyboardVoice, MdStar, MdInsertEmoticon, MdFace, MdFavoriteBorder, MdPets, MdRestaurant, MdMap } from 'react-icons/md';
 
 // Imagens
 import imgt from './../../images/user.jpg'
@@ -27,58 +30,73 @@ import socketio from 'socket.io-client';
 
 export default function Chat({ history }) {
 
-  // eslint-disable-next-line
-  const [emojisEmoji, setEmojisEmoji] = useState(EmojisEmoji);
+  // Configuracoes gerais
 
-  // eslint-disable-next-line
-  const [name, setName] = useState(getName);
-  const [messages, setMessages] = useState([]);
-  const [messageInput, setMessageInput] = useState();
-  const [contacts, setContacts] = useState([]);
-  const [privy, setPrivy] = useState([]);
+  // Pegar id do usuario
+  const patient_id = getPatient();
 
-  const [emjBtn, setEmjBtn] = useState([
-    {emojiOption: <MdInsertEmoticon size={35}/>},
-    {emojiOption: <MdFace size={35}/>},
-    {emojiOption: <MdFavoriteBorder size={35}/>},
-    {emojiOption: <MdPets size={35}/>},
-    {emojiOption: <MdRestaurant size={35}/>},
-    {emojiOption: <MdMap size={35}/>}
-  ])
+  // Pegar nome do usuario
+  const name = getName();
 
-  function contactSelected(contact){
-    setPrivy(contact);
+  // Deslogar
+  function logOut(){
+    logout();
+    history.push('/');
   }
 
+  //////////////////////////////////////////////////////////////////////////
+
+  // Contatos
+
+  // Contatos do usuario
+  const [contacts, setContacts] = useState([]);
+
+  // Pegar contatos da API
   useEffect(() => {
     async function fetchData() {
     const response = await api.get('/dashboard/patients/');
     setContacts(response.data.patients);
     }
     fetchData();
-  }, [contacts])
+  }, [contacts]);
 
-  const patient_id = getPatient();
-  const socket = useMemo(() => socketio('http://localhost:3000', {
+  // Contato selecionado
+  const [privy, setPrivy] = useState([]);
+
+  // Setar contato selecionado
+  function contactSelected(contact){
+    setPrivy(contact);
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+
+  // Mensagens
+
+  // Mensagens do chat
+  const [messages, setMessages] = useState([]);
+
+  // Mensagem sendo digitada pelo usuario
+  const [messageInput, setMessageInput] = useState("");
+
+  // Configuracao da API de mensagens
+  const socket = useMemo(() => socketio('http://localhost:3333', {
     query: { patient_id }
   }), [patient_id]);
 
+  // Carregar mensagens antigas
   useEffect(() => {
     socket.on('previousMessages', data => {
       setMessages(data);
     })
-
+    selectMessageInput();
   }, [messages, socket]);
 
+  // Recebendo mensagens
   socket.on('receivedMessage', data => {
     setMessages([...messages, data]);
   })
 
-  function logOut(){
-    logout();
-    history.push('/');
-  }
-
+  // Quando o usuario aperta Enter
   function readKey(e){
     if(e.keyCode === 13) {
       console.log(e);
@@ -86,6 +104,7 @@ export default function Chat({ history }) {
     }
   }
 
+  // Enviando a mensagem
   function chatSubmit(){
     if(messageInput.length){
 
@@ -101,12 +120,12 @@ export default function Chat({ history }) {
       socket.emit('sendMessage', messageObject);
 
       setMessageInput("");
+      closeEmojis();
+      selectMessageInput();
     }
   }
 
-  // Outras funcoes
-
-  // Calcular formatar hora da mensagem
+  // Calcular e formatar hora da mensagem
   function calcHour(){
 
     var time = new Date();
@@ -139,7 +158,33 @@ export default function Chat({ history }) {
     }
   }
 
+  // Selecionar caixa de mensagem
+  function selectMessageInput(){
+    document.querySelector('#message').focus();
+  }
 
+  //////////////////////////////////////////////////////////////////////////
+
+  // EMOJIS
+
+  // Opcoes de Emojis
+  const [emjBtn, setEmjBtn] = useState([
+    {list: EmojisFavorites, name: "favorites", emojiOption: <MdStar size={29}/>, selected: "selected"},
+    {list: EmojisEmoji, name: "emoji", emojiOption: <MdInsertEmoticon size={29}/>},
+    {list: EmojisFace, name: "face", emojiOption: <MdFace size={29}/>},
+    {list: EmojisSymbols, name: "symbols", emojiOption: <MdFavoriteBorder size={29}/>},
+    {list: EmojisNature, name: "nature", emojiOption: <MdPets size={29}/>},
+    {list: EmojisFood, name: "food", emojiOption: <MdRestaurant size={29}/>},
+    {list: EmojisFlags, name: "flags", emojiOption: <MdMap size={29}/>}
+  ])
+
+  // Lista de emoji selecionada no momento
+  const [emojisEmoji, setEmojisEmoji] = useState(EmojisFavorites);
+
+  // Caixa de Emojis
+  const [boxEmj, setBoxEmj] = useState(false);
+
+  // Configuracao dos Emojis
   const confEmojis = {
     style: {
       height: 35,
@@ -147,9 +192,58 @@ export default function Chat({ history }) {
     }
   }
 
+  // Controlar caixa de Emojis
+  function alterBoxEmoji(){
+    boxEmj ? closeEmojis() : openEmojis();
+  }
+
+  // Abrir caixa de Emojis
+  function openEmojis(){
+    document.querySelector('#chatMain').classList.remove('chatConteiner');
+    document.querySelector('#chatMain').classList.add('chatConteinerEmojis');
+    document.querySelector('#boxEmojis').classList.remove('boxEmojisClose');
+    document.querySelector('#boxEmojis').classList.add('boxEmojisOpen');
+    setBoxEmj(true);
+  }
+
+  // Fechar caixa de Emojis
+  function closeEmojis(){
+    document.querySelector('#chatMain').classList.remove('chatConteinerEmojis');
+    document.querySelector('#chatMain').classList.add('chatConteiner');
+    document.querySelector('#boxEmojis').classList.remove('boxEmojisOpen');
+    document.querySelector('#boxEmojis').classList.add('boxEmojisClose');
+    setBoxEmj(false);
+  }
+
+  // Selecionar opcao de Emojis
+  function selected(name, list){
+    
+    const newEmj = emjBtn.map(emj => {
+  
+      // eslint-disable-next-line
+      emjBtn.map(emj => {
+        emj.selected = 'noSelected';
+      })
+  
+      return emj.name === name ? {...emj, selected: 'selected'} : emj
+    });
+  
+    setEmjBtn(newEmj);
+    setEmojisEmoji(list);
+  };
+
+  // Selecionar Emoji
+  function renderEmoji(emj){
+    const newMessage = `${messageInput}${emj}`;
+    setMessageInput(newMessage);
+    selectMessageInput();
+  }
+
+  //////////////////////////////////////////////////////////////////////////
+
   return (
     <div className="outChat">
-      <div id="chatMain" className="chatConteinerEmojis">
+      <div id="chatMain" className="chatConteiner">
 
         <div className="chatConteinerheader">
           <div className="navbarHeaderPhoto">
@@ -227,11 +321,11 @@ export default function Chat({ history }) {
        }
       </main>
 
-        <div id="boxEmojis" className="boxEmojisOpen">
+        <div id="boxEmojis" className="boxEmojisClose">
 
           <div className="boxEmojisContent">
             {emojisEmoji.map( emj => (
-              <div className="emojiDiv">
+              <div className="emojiDiv" onClick={() => renderEmoji(emj.name)}>
                 {emojify(emj.name, confEmojis)}
               </div>
             ))}           
@@ -241,7 +335,7 @@ export default function Chat({ history }) {
 
             {
               emjBtn.map(emj => (
-                <div className="boxEmojisOption">
+                <div className={`boxEmojisOption ${emj.selected}`} onClick={() => selected(emj.name, emj.list)}>
                   {emj.emojiOption}
                 </div>
               ))
@@ -253,11 +347,11 @@ export default function Chat({ history }) {
 
         <footer>
           <div className="sendMessageEmoji">
-            <MdMood id="emojiButton" size={35}/>
+            <MdMood id="emojiButton" size={35} onClick={alterBoxEmoji}/>
           </div>
           <div className="sendMessageText">
             <input 
-                onKeyDown={readKey}
+                onKeyDown={readKey} contentEditable
                 onChange={e => setMessageInput(e.target.value)}
                 name="message" id="message"
                 value={messageInput}

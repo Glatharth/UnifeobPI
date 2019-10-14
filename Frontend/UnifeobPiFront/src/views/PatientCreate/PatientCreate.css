@@ -189,3 +189,88 @@ form {
   transition: 0.5s;
 }
 
+
+/* ANIMATION */
+
+#patientsCreateName {
+  animation: patientsCreateLeft 1s;
+  animation-fill-mode: backwards;
+}
+
+#patientsCreateAge{
+  animation: patientsCreateRight 1s;
+  animation-fill-mode: backwards;
+}
+
+#patientsCreateCpf{
+  animation: patientsCreateLeft 1s;
+  animation-delay: 0.2s;
+  animation-fill-mode: backwards;
+}
+
+#patientsCreateRg {
+  animation: patientsCreateRight 1s;
+  animation-delay: 0.2s;
+  animation-fill-mode: backwards;
+}
+
+#patientsCreateEmail {
+  animation: patientsCreateLeft 1s;
+  animation-delay: 0.4s;
+  animation-fill-mode: backwards;
+}
+
+.patientsCreateCGravityButton {
+  animation: patientsCreateRight 1s;
+  animation-delay: 0.4s;
+  animation-fill-mode: backwards;
+}
+
+#patientsCreateDescription {
+  animation: patientsCreateDescription 1s;
+  animation-delay: 0.6s;
+  animation-fill-mode: backwards;
+}
+
+#patientsCreateCancel {
+  animation: patientsCreateLeft 1s;
+  animation-delay: 0.8s;
+  animation-fill-mode: backwards;
+}
+
+#patientsCreateConfirm {
+  animation: patientsCreateRight 1s;
+  animation-delay: 0.8s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes patientsCreateLeft {
+  from{
+    opacity: 0;
+    transform: translateX(-50px);
+  }to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes patientsCreateRight {
+  from{
+    opacity: 0;
+    transform: translateX(+50px);
+  }to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes patientsCreateDescription {
+  from{
+    opacity: 0;
+    transform: scale(0.8);
+  }to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+

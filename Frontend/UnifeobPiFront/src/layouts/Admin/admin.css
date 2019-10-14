@@ -130,7 +130,7 @@ main {
   right: 0;
   background: linear-gradient(to bottom right, #003232 , #006767);
   min-width: 160px;
-  box-shadow: -10px 20px 15px 2px rgba(0,0,0,0.2);
+  box-shadow: -10px 10px 15px 2px rgba(0,0,0,0.2);
   z-index: 1;
 }
 
@@ -151,5 +151,85 @@ main {
   cursor: pointer;
 }
 
+
+/* ANIMACOES */
+
+#menuTitle {
+  animation: menuTitle 1s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes menuTitle {
+  from{
+    opacity: 0;
+    transform: translateX(-55px);
+  }to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#Page {
+  animation: Page 1s;
+  animation-delay: 0.7s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes Page {
+  from{
+    opacity: 0;
+    transform: translateX(-25px);
+  }to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+#dropdown {
+  animation: dropdownbtn 0.5s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes dropdownbtn {
+  from{
+    opacity: 0;
+    transform: scale(0.7);
+  }to{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.dropdown-content {
+  animation: dropdownContent 0.3s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes dropdownContent {
+  from{
+    opacity: 0;
+    transform: translateY(-5px);
+  }to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menuAnime {
+  animation: menuAnime 1s;
+  animation-delay: 0.5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes menuAnime {
+  from{
+    opacity: 0;
+    transform: translateY(-22px);
+  }to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 

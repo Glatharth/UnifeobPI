@@ -1,17 +1,21 @@
 import React, {useState} from 'react';
-
-import { Redirect } from 'react-router-dom';
-
 import './login.css';
 
+// Componente de rota
+import { Redirect } from 'react-router-dom';
+
+// API
 import api from '../../services/api'
 
+// Autenticacao
 import {isAuthenticated} from '../../services/auth'
 
 export default function Login({ history }) {
   
+  // Inputs
   const [data, setData] = useState({})
 
+  // Login
   async function handleSubmit(e) {
     e.preventDefault()
     
@@ -24,10 +28,10 @@ export default function Login({ history }) {
     localStorage.setItem('@admin-Company', newCompany);
 
     history.push("/");
-
   }
 
-  const [toHome, setToHome] = useState(isAuthenticated);
+  // Verificar autenticacao
+  const toHome = isAuthenticated();
 
   return (
 

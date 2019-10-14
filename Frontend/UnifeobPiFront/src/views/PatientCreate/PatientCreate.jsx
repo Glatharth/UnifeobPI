@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
+import './PatientCreate.css';
 
+// Componentes de rota
 import { Link } from 'react-router-dom';
 
+// API
 import api from '../../services/api';
-
-import './PatientCreate.css';
 
 export default function PatientCreate(props) {
 
+  // Dados do paciente a ser criado
   const [data, setData] = useState({})
 
+  // Criando paciente
   async function handleSubmit(e){
     e.preventDefault()
 
-    const response = await api.post('/dashboard/patients', data)
+    await api.post('/dashboard/patients', data)
 
     props.history.push("/admin/Patients");
   }
@@ -76,8 +79,8 @@ export default function PatientCreate(props) {
         </div>
 
         <div className="patientsCreateE">
-          <Link to="/admin/Patients" className="patientsCreateEButtons">Cancelar</Link>
-          <input className="patientsCreateEButtons" type="submit" value="Confirmar" /> 
+          <Link to="/admin/Patients" id="patientsCreateCancel" className="patientsCreateEButtons">Cancelar</Link>
+          <input id="patientsCreateConfirm" className="patientsCreateEButtons" type="submit" value="Confirmar" /> 
         </div>
 
       </div>

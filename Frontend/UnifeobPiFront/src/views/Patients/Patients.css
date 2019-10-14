@@ -367,4 +367,224 @@
   justify-content: center
 }
 
+/* Confirmar exclusao */
 
+#outDelet {
+  width: 83.3%;
+  height: 87vh;
+  background: rgba(0,0,0, 0.9);
+  position: absolute;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.boxDelet {
+  width: 100%;
+  height: 250px;
+  max-width: 350px;
+  border-radius: 10px;
+  background: rgba(255,255,255, 0.9);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.boxDeletMessage {
+  width: 100%;
+  padding: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boxDeletMessage h2 {
+  font-size: 16pt;
+  color: black;
+  text-align: center;
+}
+
+.boxDeletButtons {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btnDeletCancel {
+  width: 100px;
+  padding: 15px;
+  background: blue;
+  border-radius: 15px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnDeletConfirm {
+  width: 100px;
+  padding: 15px;
+  background: green;
+  border-radius: 15px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ANIMATIONS */
+
+
+/* PATIENTES VIEW  */
+
+.patientsHeader {
+  animation: patientsHeader 1s;
+}
+
+@keyframes patientsHeader {
+  from{
+    opacity: 0;
+  }to {
+    opacity: 1;
+  }
+}
+
+#search {
+  animation: search 1s;
+  animation-delay: 0.2s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes search {
+  from{
+    opacity: 0;
+    transform: scale(0.8);
+  }to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.patientsButtons {
+  animation: patientsButtons 1s;
+  animation-delay: 0.5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes patientsButtons {
+  from{
+    opacity: 0;
+    transform: translateX(-30px);
+  }to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.patientsMainBox {
+  animation: patientsMainBox 1s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes patientsMainBox {
+  from{
+    opacity: 0;
+    transform: translateX(-55px);
+  }to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.patientsMainBoxItensName {
+  animation: patientsMainBoxItensName 0.5s;
+  animation-delay: 0.5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes patientsMainBoxItensName {
+  from{
+    opacity: 0;
+    transform: translateX(-15px);
+  }to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.patientsMainBoxItensDescription {
+  animation: patientsMainBoxItensDescription 0.5s;
+  animation-delay: 0.8s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes patientsMainBoxItensDescription {
+  from{
+    opacity: 0;
+    transform: translateX(-15px);
+  }to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.boxDelet {
+  animation: boxDelet 0.3s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes boxDelet {
+  from{
+    opacity: 0;
+    transform: scale(0.85);
+  }to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.boxDeletMessage {
+  animation: boxDeletMessage 0.2s;
+  animation-delay: 0.31s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes boxDeletMessage {
+  from{
+    opacity: 0;
+    transform: scale(0.95);
+  }to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.btnDeletCancel {
+  animation: btnDeletCancel 0.3s;
+  animation-delay: 0.2s;
+  animation-fill-mode: backwards;
+}
+
+.btnDeletConfirm {
+  animation: btnDeletCancel 0.3s;
+  animation-delay: 0.2s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes btnDeletCancel {
+  from{
+    opacity: 0;
+    transform: scale(0.95);
+  }to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

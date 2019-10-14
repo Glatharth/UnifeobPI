@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-
 import './admin.css';
 
+// Pegar nome de empresa
 import { getCompany } from '../../services/auth';
 
-import { Switch, Route, Link, Redirect} from 'react-router-dom';
+// Componentes de rota
+import { Switch, Route, Link} from 'react-router-dom';
 
+// Views
 import Dashboard from '../../views/Dashboard/Dashboard';
 import Patients from '../../views/Patients/Patients';
 import PatientCreate from '../../views/PatientCreate/PatientCreate';
@@ -16,6 +18,7 @@ import Notifications from '../../views/Notifications/Notifications';
 
 export default function Admin() {
 
+  // Componentes do menu
   const [menus, setmenus] = useState([
     { page: "Dashboard", url:"Dashboard", name: "DASHBOARD", selected: "selected"},
     { page: "Pacientes", url:"Patients", name: "PACIENTES" },
@@ -25,8 +28,10 @@ export default function Admin() {
     { page: "Notifications", url:"Notifications", name: "NOTIFICATIONS" }
   ])
 
-  const [company, setCompany] = useState(getCompany)
+  // Empresa
+  const company = getCompany();
 
+  // Menu selecionado
   function selected(name, page){
 
     document.querySelector('#Page').innerHTML = page;
@@ -44,6 +49,24 @@ export default function Admin() {
     setmenus(newMenu);
   };
 
+  // Controlar dropdown
+  let dropCounter = 0
+  function alterDropdown(){
+    dropCounter === 0 ? openDropdown() : closeDropdown();
+  }
+
+  // Abrir dropdown
+  function openDropdown(){
+    document.querySelector('#dropCont').style.display = "block";
+    dropCounter = 1
+  }
+
+  // Fechar dropdown
+  function closeDropdown(){
+    document.querySelector('#dropCont').style.display = "none";
+    dropCounter = 0
+  }
+
   return (
     <div id="conteiner" className="conteiner">
 
@@ -55,7 +78,7 @@ export default function Admin() {
 
         <div>
 
-        <div className="dropdown">
+        <div className="dropdown" onClick={alterDropdown}>
           <button className="dropbtn" id="dropdown">Botao</button>
           <div id="dropCont" className="dropdown-content">
             <li>Perfil</li>
@@ -70,15 +93,18 @@ export default function Admin() {
       </header>
 
       <aside id="aside" className="aside">
+
         <div className="menu" id="menuTitle">
           <h1>{company}</h1>
         </div>
 
         <ul>
           {menus.map(menu => (
-            <Link key={menu.name} onClick={() => selected(menu.name, menu.page)} to={`/admin/${menu.url}`}>
-              <li key={menu.name} className={menu.selected} >{menu.name}</li>
-            </Link>
+            <div className="menuAnime">
+              <Link key={menu.name} onClick={() => selected(menu.name, menu.page)} to={`/admin/${menu.url}`}>
+                <li key={menu.name} className={menu.selected} >{menu.name}</li>
+              </Link>
+            </div>
           ))
           }
         </ul>
