@@ -1,7 +1,16 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
+import {
+  Container,
+  Header, HeaderPhoto, PhotoHeader, BoxTexts, HeaderName, HeaderDescription,
+  Aside, AsideHeader, AsidePhoto, PhotoAside, AsideName, AsideSearch, BoxContacts, BoxContact, ContactPhoto, PhotoContact, ContactName, 
+  Main, BoxMessage, BoxSender, BoxReceiver, Sender, Receiver, MessageText, MessageTime,
+  BoxEmojis, Emojis, Emoji, Options, Option,
+  BoxSend, ButtonEmoji, BoxInput, ButtonVoice         
+} from './styles';
+
 // Emojis
-import {emojify} from 'react-emojione';
+import { emojify } from 'react-emojione';
 import EmojisFavorites from './Emojis/EmojisListFavorites.json';
 import EmojisEmoji from './Emojis/EmojisListEmoji.json';
 import EmojisFace from './Emojis/EmojisListFace.json';
@@ -12,9 +21,6 @@ import EmojisFlags from './Emojis/EmojisListFlags.json';
 
 // Api 
 import api from '../../services/api';
-
-// Css
-import './styles.css';
 
 // Dados necessarios
 import { logout, getPatient, getName } from '../../services/auth';
@@ -39,7 +45,7 @@ export default function Chat({ history }) {
   const name = getName();
 
   // Deslogar
-  function logOut(){
+  function logOut() {
     logout();
     history.push('/');
   }
@@ -54,8 +60,8 @@ export default function Chat({ history }) {
   // Pegar contatos da API
   useEffect(() => {
     async function fetchData() {
-    const response = await api.get('/dashboard/patients/');
-    setContacts(response.data.patients);
+      const response = await api.get('/dashboard/patients/');
+      setContacts(response.data.patients);
     }
     fetchData();
   }, [contacts]);
@@ -64,7 +70,7 @@ export default function Chat({ history }) {
   const [privy, setPrivy] = useState([]);
 
   // Setar contato selecionado
-  function contactSelected(contact){
+  function contactSelected(contact) {
     setPrivy(contact);
   }
 
@@ -97,16 +103,16 @@ export default function Chat({ history }) {
   })
 
   // Quando o usuario aperta Enter
-  function readKey(e){
-    if(e.keyCode === 13) {
+  function readKey(e) {
+    if (e.keyCode === 13) {
       console.log(e);
       chatSubmit();
     }
   }
 
   // Enviando a mensagem
-  function chatSubmit(){
-    if(messageInput.length){
+  function chatSubmit() {
+    if (messageInput.length) {
 
       let messageObject = {
         author: "Name",
@@ -119,47 +125,47 @@ export default function Chat({ history }) {
 
       socket.emit('sendMessage', messageObject);
 
+      setBoxEmj(false);
       setMessageInput("");
-      closeEmojis();
       selectMessageInput();
     }
   }
 
   // Calcular e formatar hora da mensagem
-  function calcHour(){
+  function calcHour() {
 
     var time = new Date();
 
     var hours = time.getHours();
     var minutes = time.getMinutes();
 
-    if(minutes < 10){
+    if (minutes < 10) {
       minutes = `0${minutes}`;
     }
 
-    if(hours < 6){
-        return(`${hours}:${minutes} da madrugada`)
+    if (hours < 6) {
+      return (`${hours}:${minutes} da madrugada`)
     }
 
-    else if(hours < 12){
-        return(`${hours}:${minutes} da manha`)
+    else if (hours < 12) {
+      return (`${hours}:${minutes} da manha`)
     }
 
-    else if(hours < 18){
+    else if (hours < 18) {
 
-        if(hours > 12){hours = hours - 12};
+      if (hours > 12) { hours = hours - 12 };
 
-        return(`${hours}:${minutes} da tarde`)
+      return (`${hours}:${minutes} da tarde`)
     }
 
-    else if(hours <= 24 ){
-        hours = hours - 12
-        return(`${hours}:${minutes} da noite`)
+    else if (hours <= 24) {
+      hours = hours - 12
+      return (`${hours}:${minutes} da noite`)
     }
   }
 
   // Selecionar caixa de mensagem
-  function selectMessageInput(){
+  function selectMessageInput() {
     document.querySelector('#message').focus();
   }
 
@@ -169,13 +175,13 @@ export default function Chat({ history }) {
 
   // Opcoes de Emojis
   const [emjBtn, setEmjBtn] = useState([
-    {list: EmojisFavorites, name: "favorites", emojiOption: <MdStar size={29}/>, selected: "selected"},
-    {list: EmojisEmoji, name: "emoji", emojiOption: <MdInsertEmoticon size={29}/>},
-    {list: EmojisFace, name: "face", emojiOption: <MdFace size={29}/>},
-    {list: EmojisSymbols, name: "symbols", emojiOption: <MdFavoriteBorder size={29}/>},
-    {list: EmojisNature, name: "nature", emojiOption: <MdPets size={29}/>},
-    {list: EmojisFood, name: "food", emojiOption: <MdRestaurant size={29}/>},
-    {list: EmojisFlags, name: "flags", emojiOption: <MdMap size={29}/>}
+    { list: EmojisFavorites, name: "favorites", emojiOption: <MdStar size={29} />, selected: true },
+    { list: EmojisEmoji, name: "emoji", emojiOption: <MdInsertEmoticon size={29} /> },
+    { list: EmojisFace, name: "face", emojiOption: <MdFace size={29} /> },
+    { list: EmojisSymbols, name: "symbols", emojiOption: <MdFavoriteBorder size={29} /> },
+    { list: EmojisNature, name: "nature", emojiOption: <MdPets size={29} /> },
+    { list: EmojisFood, name: "food", emojiOption: <MdRestaurant size={29} /> },
+    { list: EmojisFlags, name: "flags", emojiOption: <MdMap size={29} /> }
   ])
 
   // Lista de emoji selecionada no momento
@@ -193,47 +199,29 @@ export default function Chat({ history }) {
   }
 
   // Controlar caixa de Emojis
-  function alterBoxEmoji(){
-    boxEmj ? closeEmojis() : openEmojis();
-  }
-
-  // Abrir caixa de Emojis
-  function openEmojis(){
-    document.querySelector('#chatMain').classList.remove('chatConteiner');
-    document.querySelector('#chatMain').classList.add('chatConteinerEmojis');
-    document.querySelector('#boxEmojis').classList.remove('boxEmojisClose');
-    document.querySelector('#boxEmojis').classList.add('boxEmojisOpen');
-    setBoxEmj(true);
-  }
-
-  // Fechar caixa de Emojis
-  function closeEmojis(){
-    document.querySelector('#chatMain').classList.remove('chatConteinerEmojis');
-    document.querySelector('#chatMain').classList.add('chatConteiner');
-    document.querySelector('#boxEmojis').classList.remove('boxEmojisOpen');
-    document.querySelector('#boxEmojis').classList.add('boxEmojisClose');
-    setBoxEmj(false);
+  function alterBoxEmoji() {
+    setBoxEmj(!boxEmj);
   }
 
   // Selecionar opcao de Emojis
-  function selected(name, list){
-    
+  function selected(name, list) {
+
     const newEmj = emjBtn.map(emj => {
-  
+
       // eslint-disable-next-line
       emjBtn.map(emj => {
-        emj.selected = 'noSelected';
+        emj.selected = false;
       })
-  
-      return emj.name === name ? {...emj, selected: 'selected'} : emj
+
+      return emj.name === name ? { ...emj, selected: true } : emj
     });
-  
+
     setEmjBtn(newEmj);
     setEmojisEmoji(list);
   };
 
   // Selecionar Emoji
-  function renderEmoji(emj){
+  function renderEmoji(emj) {
     const newMessage = `${messageInput}${emj}`;
     setMessageInput(newMessage);
     selectMessageInput();
@@ -242,127 +230,155 @@ export default function Chat({ history }) {
   //////////////////////////////////////////////////////////////////////////
 
   return (
-    <div className="outChat">
-      <div id="chatMain" className="chatConteiner">
 
-        <div className="chatConteinerheader">
-          <div className="navbarHeaderPhoto">
-            <img id="contactPhoto" src={imgt} alt=""/>
-          </div>
-          <div className="navbarHeaderTexts">
-            <div id="contactName" className="navbarHeaderTextsContact"><h2>{privy.name}</h2></div>
-            <div id="contactDescription" className="navbarHeaderTextsDescription"><h3>{privy.description}</h3></div>
-          </div>
-        </div>
+    <Container emojisOpen={boxEmj}>
 
-        <aside>
-          <div className="sidebarHeader">
-            <div className="sidebarHeaderPhoto">
-              <img id="photo" src={imgt} alt=""/>
-            </div>
-            <div className="sidebarHeaderName">
-              <h2 id="userName">{name}</h2>
-            </div>
-          </div>
-          <div className="sidebarSearch">
-            <input maxLength="14" placeholder="Pesquisar..." type="text" name="" id="searchContacts"/>
-          </div>
+      <Header>
 
-          <div className="sidebarContacts">
+        <HeaderPhoto>
+          <PhotoHeader src={imgt} alt="" />
+        </HeaderPhoto>
 
-            {
-              contacts.map(contact => (
-                <div className="boxContact" key={contact._id} onClick={() => contactSelected(contact)}>
-                  <div className="contactPhoto"><img src={imgt} alt=""/></div>
-                  <div className="contactName">{contact.name}</div>
-                </div>
-              ))
-            }
+        <BoxTexts>
 
-          </div>
+          <HeaderName>
+            <h2>
+              {privy.name}
+            </h2>
+          </HeaderName>
 
-        </aside>
+          <HeaderDescription>
+            <h3>
+              {privy.description}
+            </h3>
+          </HeaderDescription>
 
-      <main id="mainChat">
-       {
-         messages.map(msg => (
+        </BoxTexts>
 
-          msg.author_id === patient_id ?
+      </Header>
 
-          <div class="messageBody" key={msg._id}>
-            <div class="messageMainSender">
-              <div class="sender">
-                <div class="messageText">
-                  {emojify(msg.message)}
-                </div>
-                <span class="messageTime">
-                  {msg.hour}
-                </span>
-              </div>
-            </div>
-          </div>
+      <Aside>
 
-          :
+        <AsideHeader>
 
-          <div class="messageBody" key={msg._id}>
-            <div class="messageMainReceiver">
-              <div class="receiver">
-                <div class="messageText">
-                  {emojify(msg.message)}
-                </div>
-                <span class="messageTime">
-                  {msg.hour}
-                </span>
-              </div>
-            </div>
-          </div>
-         
-         ))
-       }
-      </main>
+          <AsidePhoto>
+            <PhotoAside src={imgt} alt="" />
+          </AsidePhoto>
 
-        <div id="boxEmojis" className="boxEmojisClose">
+          <AsideName>
+            <h2>{name}</h2>
+          </AsideName>
 
-          <div className="boxEmojisContent">
-            {emojisEmoji.map( emj => (
-              <div className="emojiDiv" onClick={() => renderEmoji(emj.name)}>
-                {emojify(emj.name, confEmojis)}
-              </div>
-            ))}           
-          </div>         
+        </AsideHeader>
 
-          <div className="boxEmojisOptions">
+        <AsideSearch>
+          <input maxLength="14" placeholder="Pesquisar..." type="text" name="" id="searchContacts" />
+        </AsideSearch>
 
-            {
-              emjBtn.map(emj => (
-                <div className={`boxEmojisOption ${emj.selected}`} onClick={() => selected(emj.name, emj.list)}>
-                  {emj.emojiOption}
-                </div>
-              ))
-            }
+        <BoxContacts>
 
-          </div>
-        
-        </div>
+          {
+            contacts.map(contact => (
+              <BoxContact key={contact._id} onClick={() => contactSelected(contact)}>
 
-        <footer>
-          <div className="sendMessageEmoji">
-            <MdMood id="emojiButton" size={35} onClick={alterBoxEmoji}/>
-          </div>
-          <div className="sendMessageText">
-            <input 
-                onKeyDown={readKey} contentEditable
-                onChange={e => setMessageInput(e.target.value)}
-                name="message" id="message"
-                value={messageInput}
-            />
-          </div>
-          <div className="sendMessageVoice">
-            <MdKeyboardVoice id="voiceButton" size={35} onClick={logOut}/>
-          </div>
-        </footer>
+                <ContactPhoto>
+                  <PhotoContact src={imgt} alt="" />
+                </ContactPhoto>
 
-      </div>
-    </div>
+                <ContactName>{contact.name}</ContactName>
+
+              </BoxContact>
+            ))
+          }
+
+        </BoxContacts>
+
+      </Aside>
+
+      <Main>
+        {
+          messages.map(msg => (
+
+            msg.author_id === patient_id ?
+
+              <BoxMessage key={msg._id}>
+                <BoxSender>
+                  <Sender>
+                    <MessageText>
+                      {emojify(msg.message)}
+                    </MessageText>
+                    <MessageTime>
+                      {msg.hour}
+                    </MessageTime>
+                  </Sender>
+                </BoxSender>
+              </BoxMessage>
+
+              :
+
+              <BoxMessage key={msg._id}>
+                <BoxReceiver>
+                  <Receiver>
+                    <MessageText>
+                      {emojify(msg.message)}
+                    </MessageText>
+                    <MessageTime>
+                      {msg.hour}
+                    </MessageTime>
+                  </Receiver>
+                </BoxReceiver>
+              </BoxMessage>
+
+          ))
+        }
+      </Main>
+
+      <BoxEmojis open={boxEmj}>
+
+        <Emojis>
+          {emojisEmoji.map(emj => (
+            <Emoji onClick={() => renderEmoji(emj.name)}>
+              {emojify(emj.name, confEmojis)}
+            </Emoji>
+          ))}
+        </Emojis>
+
+        <Options>
+
+          {
+            emjBtn.map(emj => (
+              <Option selected={emj.selected} onClick={() => selected(emj.name, emj.list)}>
+                {emj.emojiOption}
+              </Option>
+            ))
+          }
+
+        </Options>
+
+      </BoxEmojis>
+
+      <BoxSend> 
+
+        <ButtonEmoji>
+          <MdMood id="emojiButton" size={35} onClick={alterBoxEmoji} />
+        </ButtonEmoji>
+
+        <BoxInput>
+          <input
+            onKeyDown={readKey} contentEditable
+            onChange={e => setMessageInput(e.target.value)}
+            name="message" id="message"
+            value={messageInput}
+          />
+        </BoxInput>
+
+        <ButtonVoice className="sendMessageVoice">
+          <MdKeyboardVoice id="voiceButton" size={35} onClick={logOut} />
+        </ButtonVoice>
+
+      </BoxSend>
+
+
+    </Container>
   );
 }
