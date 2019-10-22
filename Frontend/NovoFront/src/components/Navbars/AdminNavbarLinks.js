@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import classNames from "classnames";
 
-import { Redirect } from 'react-router-dom';
-import { isAuthenticated } from '../../services/auth'
+import { Redirect, Link } from "react-router-dom";
+import { isAuthenticated } from "../../services/auth";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -24,7 +24,7 @@ import CustomInput from "components/CustomInput/CustomInput.js";
 import Button from "components/CustomButtons/Button.js";
 
 // API
-import { logout } from 'services/auth'
+import { logout } from "services/auth";
 
 import styles from "assets/jss/material-dashboard-react/components/headerLinksStyle.js";
 
@@ -66,7 +66,6 @@ export default function AdminNavbarLinks() {
 
   return (
     <>
-
       {toHome ? null : <Redirect to="/" />}
 
       <div>
@@ -76,7 +75,7 @@ export default function AdminNavbarLinks() {
               className: classes.margin + " " + classes.search
             }}
             inputProps={{
-              placeholder: "Search",
+              placeholder: "Buscar...",
               inputProps: {
                 "aria-label": "Search"
               }
@@ -86,18 +85,22 @@ export default function AdminNavbarLinks() {
             <Search />
           </Button>
         </div>
-        <Button
-          color={window.innerWidth > 959 ? "transparent" : "white"}
-          justIcon={window.innerWidth > 959}
-          simple={!(window.innerWidth > 959)}
-          aria-label="Dashboard"
-          className={classes.buttonLink}
-        >
-          <Dashboard className={classes.icons} />
-          <Hidden mdUp implementation="css">
-            <p className={classes.linkText}>Dashboard</p>
-          </Hidden>
-        </Button>
+
+        <Link to="/admin/dashboard">
+          <Button
+            color={window.innerWidth > 959 ? "transparent" : "white"}
+            justIcon={window.innerWidth > 959}
+            simple={!(window.innerWidth > 959)}
+            aria-label="Dashboard"
+            className={classes.buttonLink}
+          >
+            <Dashboard className={classes.icons} />
+            <Hidden mdUp implementation="css">
+              <p className={classes.linkText}>Dashboard</p>
+            </Hidden>
+          </Button>
+        </Link>
+
         <div className={classes.manager}>
           <Button
             color={window.innerWidth > 959 ? "transparent" : "white"}
@@ -113,7 +116,7 @@ export default function AdminNavbarLinks() {
             <Hidden mdUp implementation="css">
               <p onClick={handleCloseNotification} className={classes.linkText}>
                 Notification
-            </p>
+              </p>
             </Hidden>
           </Button>
           <Poppers
@@ -144,31 +147,31 @@ export default function AdminNavbarLinks() {
                         className={classes.dropdownItem}
                       >
                         Mike John responded to your email
-                    </MenuItem>
+                      </MenuItem>
                       <MenuItem
                         onClick={handleCloseNotification}
                         className={classes.dropdownItem}
                       >
                         You have 5 new tasks
-                    </MenuItem>
+                      </MenuItem>
                       <MenuItem
                         onClick={handleCloseNotification}
                         className={classes.dropdownItem}
                       >
                         You{"'"}re now friend with Andrew
-                    </MenuItem>
+                      </MenuItem>
                       <MenuItem
                         onClick={handleCloseNotification}
                         className={classes.dropdownItem}
                       >
                         Another Notification
-                    </MenuItem>
+                      </MenuItem>
                       <MenuItem
                         onClick={handleCloseNotification}
                         className={classes.dropdownItem}
                       >
                         Another One
-                    </MenuItem>
+                      </MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
@@ -214,25 +217,27 @@ export default function AdminNavbarLinks() {
                 <Paper>
                   <ClickAwayListener onClickAway={handleCloseProfile}>
                     <MenuList role="menu">
-                      <MenuItem
-                        onClick={handleCloseProfile}
-                        className={classes.dropdownItem}
-                      >
-                        Perfil
-                    </MenuItem>
+                      <Link to="/admin/user">
+                        <MenuItem
+                          onClick={handleCloseProfile}
+                          className={classes.dropdownItem}
+                        >
+                          Perfil
+                        </MenuItem>
+                      </Link>
                       <MenuItem
                         onClick={handleCloseProfile}
                         className={classes.dropdownItem}
                       >
                         Configurações
-                    </MenuItem>
+                      </MenuItem>
                       <Divider light />
                       <MenuItem
                         onClick={logOut}
                         className={classes.dropdownItem}
                       >
                         Sair
-                    </MenuItem>
+                      </MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
@@ -241,8 +246,6 @@ export default function AdminNavbarLinks() {
           </Poppers>
         </div>
       </div>
-
     </>
-
   );
 }

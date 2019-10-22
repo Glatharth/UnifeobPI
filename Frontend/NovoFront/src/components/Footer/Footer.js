@@ -47,9 +47,9 @@ export default function Footer(props) {
               target="_blank"
               className={classes.a}
             >
-              Creative Tim
+              Psicotec
             </a>
-            , made with love for a better web
+            , it's a new day on earth and in heaven.
           </span>
         </p>
       </div>

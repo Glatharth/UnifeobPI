@@ -1,18 +1,3 @@
-/*!
-
- =========================================================
- * Material Dashboard React - v1.8.0 based on Material Dashboard - v1.2.0
- =========================================================
-
- * Product Page: http://www.creative-tim.com/product/material-dashboard-react
- * Copyright 2019 Creative Tim (http://www.creative-tim.com)
- * Licensed under MIT (https://github.com/creativetimofficial/material-dashboard-react/blob/master/LICENSE.md)
-
- =========================================================
-
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
- */
 .ct-grid {
   stroke: rgba(255, 255, 255, 0.2);
   stroke-width: 1px;
@@ -68,6 +53,10 @@ body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 1.5em;
+}
+
+* {
+  user-select: none;
 }
 
 blockquote footer:before,
@@ -326,29 +315,66 @@ footer ul li a:hover {
   background-color: rgba(30, 30, 30, 0.97);
 }
 
-.fixed-plugin .badge.active,
-.fixed-plugin .badge:hover {
-  border-color: #00bbff;
-}
+
 
 .fixed-plugin .badge-purple {
   background-color: #9c27b0;
+}
+
+.fixed-plugin .badge-purple:hover {
+  border-color: #9c27b0 ;
+}
+
+.fixed-plugin .badge-purple.active {
+  border-color: #9c27b0 ;
 }
 
 .fixed-plugin .badge-blue {
   background-color: #00bcd4;
 }
 
+.fixed-plugin .badge-blue:hover {
+  border-color: #00bcd4;
+}
+
+.fixed-plugin .badge-blue.active {
+  border-color: #00bcd4;
+}
+
 .fixed-plugin .badge-green {
   background-color: #4caf50;
+}
+
+.fixed-plugin .badge-green:hover {
+  border-color: #4caf50;
+}
+
+.fixed-plugin .badge-green.active {
+  border-color: #4caf50;
+}
+
+.fixed-plugin .badge-red {
+  background-color: #f44336;
+}
+
+.fixed-plugin .badge-red:hover {
+  border-color: #f44336;
+}
+
+.fixed-plugin .badge-red.active {
+  border-color: #f44336;
 }
 
 .fixed-plugin .badge-orange {
   background-color: #ff9800;
 }
 
-.fixed-plugin .badge-red {
-  background-color: #f44336;
+.fixed-plugin .badge-orange:hover {
+  border-color: #ff9800;
+}
+
+.fixed-plugin .badge-orange.active {
+  border-color: #ff9800;
 }
 
 .fixed-plugin h5 {
@@ -440,12 +466,12 @@ footer ul li a:hover {
 }
 .fixed-plugin .dropdown-menu > li:hover > a.img-holder,
 .fixed-plugin .dropdown-menu > li:focus > a.img-holder {
-  border-color: rgba(0, 187, 255, 0.53);
+  border-color: rgba(0, 0, 0, 1);
 }
 
 .fixed-plugin .dropdown-menu > .active > a.img-holder,
 .fixed-plugin .dropdown-menu > .active > a.img-holder {
-  border-color: #00bbff;
+  border-color: black;
   background-color: #ffffff;
 }
 .fixed-plugin .dropdown .dropdown-menu {

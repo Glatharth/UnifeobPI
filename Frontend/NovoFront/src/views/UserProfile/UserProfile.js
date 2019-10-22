@@ -139,7 +139,6 @@ export default function UserProfile() {
               </GridContainer>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
-                  
                   <CustomInput
                     labelText="Descricao..."
                     id="about-me"
