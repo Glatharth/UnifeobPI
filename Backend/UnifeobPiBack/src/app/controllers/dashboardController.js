@@ -1,6 +1,8 @@
 const express = require('express');
 const authMiddleware = require('../middlewares/auth');
 
+const bcrypt = require('bcryptjs');
+
 const Patients = require('../models/patients')
 
 const router = express.Router();
@@ -11,7 +13,7 @@ router.get('/', (req, res) => {
   res.send({ admin: req.adminId });
 })
 
-// List
+// List Patients
 router.get('/patients/', async (req, res) => {
   try {
     const patients = await Patients.find().populate('admin');
@@ -22,7 +24,7 @@ router.get('/patients/', async (req, res) => {
   }
 })
 
-// Show
+// Show Patient
 router.get('/patients/:patientsId', async (req, res) => {
   try {
     const patient = await Patients.findById(req.params.patientsId).populate('admin');
@@ -33,7 +35,7 @@ router.get('/patients/:patientsId', async (req, res) => {
   }
 })
 
-// Create
+// Create Patient
 router.post('/patients/', async (req, res) => {
   try {
     const patient = await Patients.create({ ...req.body, admin: req.adminId });
@@ -45,7 +47,7 @@ router.post('/patients/', async (req, res) => {
   }
 })
 
-// Update
+// Update Patient
 router.put('/patients/:patientsId', async (req, res) => {
   try {
     const patient = await Patients.findByIdAndUpdate(req.params.patientsId, req.body, {
@@ -58,7 +60,7 @@ router.put('/patients/:patientsId', async (req, res) => {
   }
 })
 
-// Delete
+// Delete Patient
 router.delete('/patients/:patientsId', async (req, res) => {
   try {
     const patient = await Patients.findByIdAndRemove(req.params.patientsId);

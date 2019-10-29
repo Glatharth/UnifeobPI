@@ -3,8 +3,9 @@ const mongoose = require('../../database')
 const bcryptjs = require('bcryptjs');
 
 const AdminSchema = new mongoose.Schema({
+
   email: {
-    type: String,
+    type: String, 
     unique: true,
     required: true,
     lowercase: true
@@ -24,6 +25,22 @@ const AdminSchema = new mongoose.Schema({
     type: String,
   },
 
+  city: {
+    type: String,
+  },
+
+  state: {
+    type: String,
+  },
+
+  cep: {
+    type: String,
+  },
+
+  description: {
+    type: String,
+  },
+
   createdAt: {
     type: Date,
     default: Date.now
@@ -31,6 +48,7 @@ const AdminSchema = new mongoose.Schema({
 
 })
 
+// Antes de salvar transformamos a senha em um hash
 AdminSchema.pre('save', async function(next) {
   const hash = await bcryptjs.hash(this.password, 10);
   this.password = hash;

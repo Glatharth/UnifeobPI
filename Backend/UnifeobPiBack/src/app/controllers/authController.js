@@ -58,6 +58,17 @@ router.post('/authenticate', async (req, res) => {
 
 })
 
+// Show Admin
+router.get('/admin/:adminId', async (req, res) => {
+  try {
+    const admin = await Admin.findById(req.params.adminId);
+
+    return res.send({ admin });
+  } catch(err) {
+    res.status(400).send({ erro: "Erro ao carregar administrador" });
+  }
+})
+
 router.post('/login', async (req, res) => {
   const {email, password} = req.body;
 

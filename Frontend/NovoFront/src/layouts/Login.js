@@ -73,9 +73,11 @@ export default function Login({ history }) {
 
     const newToken = response.data.token;
     const newCompany = response.data.admin.company;
-
+    const newAdminId = response.data.admin._id;
+    
     localStorage.setItem("@admin-Token", newToken);
     localStorage.setItem("@admin-Company", newCompany);
+    localStorage.setItem("@admin-CompanyId", newAdminId);
 
     history.push("/");
   }

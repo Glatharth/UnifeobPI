@@ -40,12 +40,24 @@ export const Header = styled.div`
   grid-area: h;
 
   background: rgba(0,0,0,0.2);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const HeaderContent = styled.div`
+  width: 85%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const HeaderPhoto = styled.div`
-  width: 10%;
   height: 100%;
-  float: left;
+  width: 15%;
 
   animation: ${photoAnimation} 0.5s;
 
@@ -64,9 +76,8 @@ export const PhotoHeader = styled.img`
 `;
 
 export const BoxTexts = styled.div`
-  width: 90%;
   height: 100%;
-  float: left;
+  width: 85%;
 `;
 
 export const HeaderName = styled.div`
@@ -83,6 +94,15 @@ export const HeaderDescription = styled.div`
   align-items: flex-start;
 `;
 
+export const HeaderButtons = styled.div`
+  height: 100%;
+  width: 15%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 // Aside 
 export const Aside = styled.div`
   grid-area: a;
@@ -93,6 +113,7 @@ export const AsideHeader = styled.div`
   height: 13vh;
 
   background: rgba(255,255,255, 0.1);
+  color: white;
 `;
 
 export const AsidePhoto = styled.div`

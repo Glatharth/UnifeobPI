@@ -43,6 +43,10 @@ const PatientsSchema = new mongoose.Schema({
     type: String
   },
 
+  descriptionChat: {
+    type: String
+  },
+
   color: {
     type: String,
     default: "blue"
@@ -61,6 +65,7 @@ const PatientsSchema = new mongoose.Schema({
 
 })
 
+// Antes de salvar transformamos a senha em um hash
 PatientsSchema.pre('save', async function(next) {
   const hash = await bcryptjs.hash(this.password, 10);
   this.password = hash;

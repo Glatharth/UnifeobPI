@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-// import api from '../../services/api';
+import api from "../../services/api";
+import { getCompanyId } from "../../services/auth";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,12 +18,6 @@ import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 
 import avatar from "assets/img/faces/marc.jpg";
-
-// const [data, setData] = useState([]);
-
-// useEffect(() => {
-//   const response = api
-// },[])
 
 const styles = {
   cardCategoryWhite: {
@@ -46,6 +42,28 @@ const useStyles = makeStyles(styles);
 
 export default function UserProfile() {
   const classes = useStyles();
+
+  const adminData = useSelector(state => state.dataAdmin);
+  const dispatch = useDispatch();
+
+  // Dados do admin
+  const [data, setData] = useState(adminData);
+  // alert(JSON.stringify(data));
+  alert(JSON.stringify(data.admin.email));
+
+  // Buscar admin na API
+  useEffect(() => {
+    async function fetchData() {
+      const response = await api.get(`/auth/admin/${getCompanyId()}`);
+      setAdminData(response.data);
+    }
+    fetchData();
+  }, []);
+
+  function setAdminData(admin) {
+    dispatch({ type: "SET_ADMIN", admin: admin });
+  }
+
   return (
     <div>
       <GridContainer>
@@ -56,10 +74,11 @@ export default function UserProfile() {
               <p className={classes.cardCategoryWhite}>Complete seu perfil</p>
             </CardHeader>
             <CardBody>
+
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
-                    labelText="Company (disabled)"
+                    labelText={data.company}
                     id="company-disabled"
                     formControlProps={{
                       fullWidth: true
@@ -69,16 +88,8 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
-                  <CustomInput
-                    labelText="Username"
-                    id="username"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+
+                <GridItem xs={12} sm={12} md={7}>
                   <CustomInput
                     labelText="E-mail"
                     id="email-address"
@@ -87,8 +98,11 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
+
               </GridContainer>
-              <GridContainer>
+
+              {/* <GridContainer>
+
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
                     labelText="Primeiro Nome"
@@ -98,6 +112,7 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
+
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
                     labelText="Ultimo Nome"
@@ -107,8 +122,11 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
-              </GridContainer>
+
+              </GridContainer> */}
+
               <GridContainer>
+
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="Cidade"
@@ -118,6 +136,7 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
+
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="Estado"
@@ -127,6 +146,7 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
+
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="CEP"
@@ -136,8 +156,11 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
+
               </GridContainer>
+
               <GridContainer>
+
                 <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
                     labelText="Descricao..."
@@ -151,8 +174,11 @@ export default function UserProfile() {
                     }}
                   />
                 </GridItem>
+
               </GridContainer>
+
             </CardBody>
+
             <CardFooter>
               <Button color="primary">Atualizar Perfil</Button>
             </CardFooter>

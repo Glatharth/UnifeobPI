@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useMemo } from 'react';
 
+import { Link } from "react-router-dom";
+
 import {
   Container,
-  Header, HeaderPhoto, PhotoHeader, BoxTexts, HeaderName, HeaderDescription,
-  Aside, AsideHeader, AsidePhoto, PhotoAside, AsideName, AsideSearch, BoxContacts, BoxContact, ContactPhoto, PhotoContact, ContactName, 
+  Header, HeaderContent, HeaderPhoto, PhotoHeader, BoxTexts, HeaderName, HeaderDescription, HeaderButtons,
+  Aside, AsideHeader, AsidePhoto, PhotoAside, AsideName, AsideSearch, BoxContacts, BoxContact, ContactPhoto, PhotoContact, ContactName,
   Main, BoxMessage, BoxSender, BoxReceiver, Sender, Receiver, MessageText, MessageTime,
   BoxEmojis, Emojis, Emoji, Options, Option,
-  BoxSend, ButtonEmoji, BoxInput, ButtonVoice         
+  BoxSend, ButtonEmoji, BoxInput, ButtonVoice
 } from './styles';
 
 // Emojis
@@ -64,7 +66,7 @@ export default function Chat({ history }) {
       setContacts(response.data.patients);
     }
     fetchData();
-  }, [contacts]);
+  }, []);
 
   // Contato selecionado
   const [privy, setPrivy] = useState([]);
@@ -235,41 +237,54 @@ export default function Chat({ history }) {
 
       <Header>
 
-        <HeaderPhoto>
-          <PhotoHeader src={imgt} alt="" />
-        </HeaderPhoto>
+        <HeaderContent>
 
-        <BoxTexts>
+          <HeaderPhoto>
+            <PhotoHeader src={imgt} alt="" />
+          </HeaderPhoto>
 
-          <HeaderName>
-            <h2>
-              {privy.name}
-            </h2>
-          </HeaderName>
+          <BoxTexts>
 
-          <HeaderDescription>
-            <h3>
-              {privy.description}
-            </h3>
-          </HeaderDescription>
+            <HeaderName>
+              <h2>
+                {privy.name}
+              </h2>
+            </HeaderName>
 
-        </BoxTexts>
+            <HeaderDescription>
+              <h3>
+                {privy.description}
+              </h3>
+            </HeaderDescription>
+
+          </BoxTexts>
+
+        </HeaderContent>
+
+        <HeaderButtons>
+
+        </HeaderButtons>
 
       </Header>
 
       <Aside>
 
-        <AsideHeader>
+        <Link to="/profile">
 
-          <AsidePhoto>
-            <PhotoAside src={imgt} alt="" />
-          </AsidePhoto>
+          <AsideHeader>
 
-          <AsideName>
-            <h2>{name}</h2>
-          </AsideName>
+            <AsidePhoto>
+              <PhotoAside src={imgt} alt="" />
+            </AsidePhoto>
 
-        </AsideHeader>
+            <AsideName>
+              <h2>{name}</h2>
+            </AsideName>
+
+          </AsideHeader>
+
+        </Link>
+
 
         <AsideSearch>
           <input maxLength="14" placeholder="Pesquisar..." type="text" name="" id="searchContacts" />
@@ -337,7 +352,7 @@ export default function Chat({ history }) {
 
         <Emojis>
           {emojisEmoji.map(emj => (
-            <Emoji onClick={() => renderEmoji(emj.name)}>
+            <Emoji key={emj.name} onClick={() => renderEmoji(emj.name)}>
               {emojify(emj.name, confEmojis)}
             </Emoji>
           ))}
@@ -347,7 +362,7 @@ export default function Chat({ history }) {
 
           {
             emjBtn.map(emj => (
-              <Option selected={emj.selected} onClick={() => selected(emj.name, emj.list)}>
+              <Option key={emj.name} selected={emj.selected} onClick={() => selected(emj.name, emj.list)}>
                 {emj.emojiOption}
               </Option>
             ))
@@ -357,7 +372,7 @@ export default function Chat({ history }) {
 
       </BoxEmojis>
 
-      <BoxSend> 
+      <BoxSend>
 
         <ButtonEmoji>
           <MdMood id="emojiButton" size={35} onClick={alterBoxEmoji} />
@@ -365,7 +380,7 @@ export default function Chat({ history }) {
 
         <BoxInput>
           <input
-            onKeyDown={readKey} contentEditable
+            onKeyDown={readKey} autocomplete="off"
             onChange={e => setMessageInput(e.target.value)}
             name="message" id="message"
             value={messageInput}

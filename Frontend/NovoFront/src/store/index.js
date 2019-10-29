@@ -2,7 +2,8 @@ import { createStore } from "redux";
 
 const INITIAL_STATE = {
   data: [],
-  dataEdit: false
+  dataEdit: false,
+  dataAdmin: []
 };
 
 function patients(state = INITIAL_STATE, action) {
@@ -11,6 +12,8 @@ function patients(state = INITIAL_STATE, action) {
       return { ...state, data: action.patients };
     case "EDIT_PATIENT":
       return { ...state, dataEdit: action.patient };
+    case "SET_ADMIN":
+      return { ...state, dataAdmin: action.admin };
     default:
       return state;
   }
