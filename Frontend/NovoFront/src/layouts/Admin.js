@@ -1,5 +1,8 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+
+import PatientEdit from "../views/PatientEdit/PatientEdit";
+
 // creates a beautiful scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
@@ -34,6 +37,7 @@ const switchRoutes = (
       }
       return null;
     })}
+    <Route path="/admin/patientEdit" component={PatientEdit} />
     <Redirect exact from="/" to="/admin/dashboard" />
     <Redirect from="/admin" to="/admin/dashboard" />
   </Switch>
@@ -117,8 +121,8 @@ export default function Admin({ ...rest }) {
             <div className={classes.container}>{switchRoutes}</div>
           </div>
         ) : (
-          <div className={classes.map}>{switchRoutes}</div>
-        )}
+            <div className={classes.map}>{switchRoutes}</div>
+          )}
         {getRoute() ? <Footer /> : null}
         <FixedPlugin
           handleImageClick={handleImageClick}

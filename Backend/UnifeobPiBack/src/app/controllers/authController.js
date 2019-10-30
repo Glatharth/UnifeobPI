@@ -69,6 +69,19 @@ router.get('/admin/:adminId', async (req, res) => {
   }
 })
 
+// Update Admin
+router.put('/admin/:adminId', async (req, res) => {
+  try {
+    const admin = await Admin.findByIdAndUpdate(req.params.adminId, req.body, {
+      new:true
+    });
+
+    res.send({ admin });
+  } catch(err) {
+    res.status(400).send({ erro: "Erro ao alterar dados de administrador" });
+  }
+})
+
 router.post('/login', async (req, res) => {
   const {email, password} = req.body;
 

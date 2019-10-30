@@ -134,6 +134,7 @@ export default function PatientCreate(props) {
                   id="gravity"
                   label="Gravidade"
                   name="gravity"
+                  onChange={e => setData({ ...data, gravity: e.target.value })}
                   value={data.gravity}
                 />
               </Grid>

@@ -19,6 +19,7 @@ import "assets/css/material-dashboard-react.css?v=1.8.0";
 const hist = createBrowserHistory();
 
 // Rota privada
+// eslint-disable-next-line react/prop-types
 function PrivateRoute({ component: Component, ...rest }) {
   return (
     <Route
@@ -28,6 +29,7 @@ function PrivateRoute({ component: Component, ...rest }) {
           <Component {...props} />
         ) : (
           <Redirect
+            // eslint-disable-next-line react/prop-types
             to={{ pathname: "/login", state: { from: props.location } }}
           />
         )

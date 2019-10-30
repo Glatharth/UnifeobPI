@@ -15,7 +15,7 @@ import PatientEdit from "views/PatientEdit/PatientEdit.js";
 import TableList from "views/TableList/TableList.js";
 import Typography from "views/Typography/Typography.js";
 import Icons from "views/Icons/Icons.js";
-import NotificationsPage from "views/Notifications/Notifications.js";
+import Schedule from "views/Schedule/Schedule.js";
 import UserProfile from "views/UserProfile/UserProfile.js";
 
 const dashboardRoutes = [
@@ -43,14 +43,14 @@ const dashboardRoutes = [
     component: PatientCreate,
     layout: "/admin"
   },
-  {
-    path: "/patientEdit",
-    name: "Editar Paciente",
-    rtlName: "ملف تعريفي للمستخدم",
-    icon: PersonAdd,
-    component: PatientEdit,
-    layout: "/admin"
-  },
+  // {
+  //   path: "/patientEdit",
+  //   name: "Editar Paciente",
+  //   rtlName: "ملف تعريفي للمستخدم",
+  //   icon: PersonAdd,
+  //   component: PatientEdit,
+  //   layout: "/admin"
+  // },
   {
     path: "/table",
     name: "Formularios",
@@ -76,11 +76,11 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/notifications",
-    name: "Notifications",
+    path: "/schedule",
+    name: "Agenda",
     rtlName: "إخطارات",
     icon: Notifications,
-    component: NotificationsPage,
+    component: Schedule,
     layout: "/admin"
   },
   {

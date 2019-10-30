@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
 
 import api from "../../services/api";
+
 import { getCompanyId } from "../../services/auth";
 
 // @material-ui/core components
@@ -40,28 +40,27 @@ const styles = {
 
 const useStyles = makeStyles(styles);
 
-export default function UserProfile() {
+export default function UserProfile(props) {
   const classes = useStyles();
 
-  const adminData = useSelector(state => state.dataAdmin);
-  const dispatch = useDispatch();
-
   // Dados do admin
-  const [data, setData] = useState(adminData);
-  // alert(JSON.stringify(data));
-  alert(JSON.stringify(data.admin.email));
+  const [data, setData] = useState([]);
 
   // Buscar admin na API
   useEffect(() => {
     async function fetchData() {
       const response = await api.get(`/auth/admin/${getCompanyId()}`);
-      setAdminData(response.data);
+      setData(response.data.admin);
     }
     fetchData();
   }, []);
 
-  function setAdminData(admin) {
-    dispatch({ type: "SET_ADMIN", admin: admin });
+  async function handleClick(e) {
+    e.preventDefault();
+
+    await api.put(`/auth/admin/${data._id}`, data);
+
+    props.history.push("/");
   }
 
   return (
@@ -96,35 +95,14 @@ export default function UserProfile() {
                     formControlProps={{
                       fullWidth: true
                     }}
+                    inputProps={{
+                      value: `${data.email}`,
+                      onChange: e => setData({ ...data, email: e.target.value })
+                    }}
                   />
                 </GridItem>
 
               </GridContainer>
-
-              {/* <GridContainer>
-
-                <GridItem xs={12} sm={12} md={6}>
-                  <CustomInput
-                    labelText="Primeiro Nome"
-                    id="first-name"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-
-                <GridItem xs={12} sm={12} md={6}>
-                  <CustomInput
-                    labelText="Ultimo Nome"
-                    id="last-name"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-
-              </GridContainer> */}
-
               <GridContainer>
 
                 <GridItem xs={12} sm={12} md={4}>
@@ -133,6 +111,10 @@ export default function UserProfile() {
                     id="city"
                     formControlProps={{
                       fullWidth: true
+                    }}
+                    inputProps={{
+                      value: `${data.city}`,
+                      onChange: e => setData({ ...data, city: e.target.value })
                     }}
                   />
                 </GridItem>
@@ -144,6 +126,10 @@ export default function UserProfile() {
                     formControlProps={{
                       fullWidth: true
                     }}
+                    inputProps={{
+                      value: `${data.state}`,
+                      onChange: e => setData({ ...data, state: e.target.value })
+                    }}
                   />
                 </GridItem>
 
@@ -154,33 +140,38 @@ export default function UserProfile() {
                     formControlProps={{
                       fullWidth: true
                     }}
+                    inputProps={{
+                      value: `${data.cep}`,
+                      onChange: e => setData({ ...data, cep: e.target.value })
+                    }}
                   />
                 </GridItem>
-
               </GridContainer>
 
               <GridContainer>
-
                 <GridItem xs={12} sm={12} md={12}>
                   <CustomInput
                     labelText="Descricao..."
-                    id="about-me"
+                    id="description"
                     formControlProps={{
                       fullWidth: true
                     }}
                     inputProps={{
                       multiline: true,
-                      rows: 5
+                      rows: 5,
+                      value: `${data.description}`,
+                      onChange: e => setData({ ...data, description: e.target.value })
                     }}
                   />
                 </GridItem>
-
               </GridContainer>
-
             </CardBody>
 
             <CardFooter>
-              <Button color="primary">Atualizar Perfil</Button>
+              <Button color="primary" 
+              fullWidth
+              onClick={handleClick}
+              >Atualizar Perfil</Button>
             </CardFooter>
           </Card>
         </GridItem>

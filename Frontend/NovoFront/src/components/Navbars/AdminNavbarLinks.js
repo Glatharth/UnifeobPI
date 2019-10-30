@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 
 import { Redirect, Link } from "react-router-dom";
@@ -61,15 +61,28 @@ export default function AdminNavbarLinks() {
     setToHome(false);
   }
 
+  // Pesquisar
+  function handleSearch() {
+    setToPatients(true);
+  }
+
   // Verificar autenticacao
   const [toHome, setToHome] = useState(isAuthenticated());
+  const [toPatients, setToPatients] = useState(false);
+
+  useEffect(() => {
+    setToPatients(false);
+  },[toPatients])
 
   return (
     <>
       {toHome ? null : <Redirect to="/" />}
+      {toPatients ? <Redirect to="/admin/patients" /> : null}
+
+      {/* {alert(JSON.stringify(toPatients))} */}
 
       <div>
-        <div className={classes.searchWrapper}>
+        <div className={classes.searchWrapper} onSelect={handleSearch}>
           <CustomInput
             formControlProps={{
               className: classes.margin + " " + classes.search
