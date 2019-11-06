@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from "react-redux";
 // API
 import api from "../../services/api";
 
-import teste from "../../assets/img/tim_80x80.png";
 import { makeStyles } from "@material-ui/core/styles";
 
 // Apagar

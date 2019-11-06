@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+
+import { getCompanyId } from "../services/auth";
+
+import { useDispatch } from "react-redux";
+
+import api from "../services/api";
 
 import PatientEdit from "../views/PatientEdit/PatientEdit";
 
@@ -18,8 +24,7 @@ import routes from "routes.js";
 
 import styles from "assets/jss/material-dashboard-react/layouts/adminStyle.js";
 
-import bgImage from "assets/img/sidebar-2.jpg";
-import logo from "assets/img/reactlogo.png";
+import bgImage from "assets/img/sidebar-1.jpg";
 
 let ps;
 
@@ -52,7 +57,7 @@ export default function Admin({ ...rest }) {
   const mainPanel = React.createRef();
   // states and functions
   const [image, setImage] = React.useState(bgImage);
-  const [color, setColor] = React.useState("blue");
+  const [color, setColor] = React.useState("");
   const [fixedClasses, setFixedClasses] = React.useState("dropdown");
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleImageClick = image => {
@@ -97,12 +102,26 @@ export default function Admin({ ...rest }) {
       window.removeEventListener("resize", resizeFunction);
     };
   }, [mainPanel]);
+
+  const dispatch = useDispatch();
+
+  // Buscar admin na API
+  useEffect(() => {
+    async function fetchData() {
+      const response = await api.get(`/auth/admin/${getCompanyId()}`);
+      dispatch({ type: "SET_ADMIN", admin: response.data.admin });
+      setColor(response.data.admin.color);
+      dispatch({ type: "EDIT_PATIENT", patient: false });
+      // alert(JSON.stringify(color));
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className={classes.wrapper}>
       <Sidebar
         routes={routes}
         logoText={"Psicotec"}
-        logo={logo}
         image={image}
         handleDrawerToggle={handleDrawerToggle}
         open={mobileOpen}
@@ -121,8 +140,8 @@ export default function Admin({ ...rest }) {
             <div className={classes.container}>{switchRoutes}</div>
           </div>
         ) : (
-            <div className={classes.map}>{switchRoutes}</div>
-          )}
+          <div className={classes.map}>{switchRoutes}</div>
+        )}
         {getRoute() ? <Footer /> : null}
         <FixedPlugin
           handleImageClick={handleImageClick}

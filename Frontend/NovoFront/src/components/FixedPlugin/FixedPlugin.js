@@ -1,5 +1,10 @@
 /*eslint-disable*/
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import api from "../../services/api";
+
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // nodejs library that concatenates classes
@@ -11,12 +16,37 @@ import imagine3 from "assets/img/sidebar-3.jpg";
 import imagine4 from "assets/img/sidebar-4.jpg";
 
 export default function FixedPlugin(props) {
-  const [classes, setClasses] = React.useState("dropdown show");
-  const [bg_checked, setBg_checked] = React.useState(true);
-  const [bgImage, setBgImage] = React.useState(props.bgImage);
+  // Dados do admin
+  const [data, setData] = useState();
+
+  const [classes, setClasses] = useState("dropdown show");
+  const [bg_checked, setBg_checked] = useState(true);
+  const [bgImage, setBgImage] = useState(props.bgImage);
   const handleClick = () => {
     props.handleFixedClick();
   };
+
+  const dispatch = useDispatch();
+   
+  const adm = useSelector(state => state.admin);
+
+  useEffect(() => {
+    async function fetchData() {
+      setData(adm);
+    }
+    fetchData();
+  }, [])
+
+  async function handleColor(color) {
+    await setData({ ...data, color: color })
+    dispatch({ type: "SET_COLOR", color: color });
+    pushColor();
+  }
+
+  async function pushColor() {
+    const response = await api.put(`/auth/admin/${data._id}`, data);
+  }
+
   return (
     <div
       className={classnames("fixed-plugin", {
@@ -24,11 +54,11 @@ export default function FixedPlugin(props) {
       })}
     >
       <div id="fixedPluginClasses" className={props.fixedClasses}>
-        <div onClick={handleClick} style={{cursor:"pointer", userSelect:"none"}}>
+        <div onClick={handleClick} style={{ cursor: "pointer", userSelect: "none" }}>
           <i className="fa fa-cog fa-2x" />
         </div>
         <ul className="dropdown-menu">
-        <li className="adjustments-line" />
+          <li className="adjustments-line" />
           <li className="header-title">Filtros do Site</li>
           <li className="adjustments-line">
             <a className="switch-trigger">
@@ -42,6 +72,7 @@ export default function FixedPlugin(props) {
                   data-color="purple"
                   onClick={() => {
                     props.handleColorClick("purple");
+                    handleColor("purple");
                   }}
                 />
                 <span
@@ -53,6 +84,7 @@ export default function FixedPlugin(props) {
                   data-color="blue"
                   onClick={() => {
                     props.handleColorClick("blue");
+                    handleColor("blue");
                   }}
                 />
                 <span
@@ -64,6 +96,7 @@ export default function FixedPlugin(props) {
                   data-color="green"
                   onClick={() => {
                     props.handleColorClick("green");
+                    handleColor("green");
                   }}
                 />
                 <span
@@ -75,6 +108,7 @@ export default function FixedPlugin(props) {
                   data-color="red"
                   onClick={() => {
                     props.handleColorClick("red");
+                    handleColor("red");
                   }}
                 />
                 <span
@@ -86,6 +120,7 @@ export default function FixedPlugin(props) {
                   data-color="orange"
                   onClick={() => {
                     props.handleColorClick("orange");
+                    handleColor("orange");
                   }}
                 />
               </div>

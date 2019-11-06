@@ -38,7 +38,21 @@ const useStyles = makeStyles(theme => ({
   btns: {
     display: "flex",
     justifyContent: "space-between"
-  }
+  },
+  cssLabel: {
+    "&$cssFocused": {
+      color: "black !important"
+    }
+  },
+
+  cssOutlinedInput: {
+    "&$cssFocused $notchedOutline": {
+      borderColor: "black !important"
+    }
+  },
+
+  cssFocused: {},
+  notchedOutline: {}
 }));
 
 export default function PatientCreate(props) {
@@ -63,7 +77,7 @@ export default function PatientCreate(props) {
   }
 
   const dispatch = useDispatch();
-  
+
   // Apagando paciente
   async function handleDelete(e) {
     e.preventDefault();
@@ -95,6 +109,19 @@ export default function PatientCreate(props) {
                   autoFocus
                   onChange={e => setData({ ...data, name: e.target.value })}
                   value={data.name}
+                  InputLabelProps={{
+                    classes: {
+                      root: classes.cssLabel,
+                      focused: classes.cssFocused
+                    }
+                  }}
+                  InputProps={{
+                    classes: {
+                      root: classes.cssOutlinedInput,
+                      focused: classes.cssFocused,
+                      notchedOutline: classes.notchedOutline
+                    }
+                  }}
                 />
               </Grid>
 

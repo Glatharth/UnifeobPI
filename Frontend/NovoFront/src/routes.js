@@ -11,7 +11,6 @@ import AccountBox from "@material-ui/icons/AccountBox";
 import DashboardPage from "views/Dashboard/Dashboard.js";
 import Patients from "views/Patients/Patients.js";
 import PatientCreate from "views/PatientCreate/PatientCreate.js";
-import PatientEdit from "views/PatientEdit/PatientEdit.js";
 import TableList from "views/TableList/TableList.js";
 import Typography from "views/Typography/Typography.js";
 import Icons from "views/Icons/Icons.js";

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+
+import { useSelector, useDispatch } from "react-redux";
 
 import api from "../../services/api";
-
-import { getCompanyId } from "../../services/auth";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -43,22 +43,16 @@ const useStyles = makeStyles(styles);
 export default function UserProfile(props) {
   const classes = useStyles();
 
-  // Dados do admin
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
 
-  // Buscar admin na API
-  useEffect(() => {
-    async function fetchData() {
-      const response = await api.get(`/auth/admin/${getCompanyId()}`);
-      setData(response.data.admin);
-    }
-    fetchData();
-  }, []);
+  // Dados do admin
+  const [data, setData] = useState(useSelector(state => state.admin));
 
   async function handleClick(e) {
     e.preventDefault();
 
     await api.put(`/auth/admin/${data._id}`, data);
+    dispatch({ type: "SET_ADMIN", admin: data });
 
     props.history.push("/");
   }
@@ -73,7 +67,6 @@ export default function UserProfile(props) {
               <p className={classes.cardCategoryWhite}>Complete seu perfil</p>
             </CardHeader>
             <CardBody>
-
               <GridContainer>
                 <GridItem xs={12} sm={12} md={5}>
                   <CustomInput
@@ -101,10 +94,8 @@ export default function UserProfile(props) {
                     }}
                   />
                 </GridItem>
-
               </GridContainer>
               <GridContainer>
-
                 <GridItem xs={12} sm={12} md={4}>
                   <CustomInput
                     labelText="Cidade"
@@ -160,7 +151,8 @@ export default function UserProfile(props) {
                       multiline: true,
                       rows: 5,
                       value: `${data.description}`,
-                      onChange: e => setData({ ...data, description: e.target.value })
+                      onChange: e =>
+                        setData({ ...data, description: e.target.value })
                     }}
                   />
                 </GridItem>
@@ -168,10 +160,9 @@ export default function UserProfile(props) {
             </CardBody>
 
             <CardFooter>
-              <Button color="primary" 
-              fullWidth
-              onClick={handleClick}
-              >Atualizar Perfil</Button>
+              <Button color="primary" fullWidth onClick={handleClick}>
+                Atualizar Perfil
+              </Button>
             </CardFooter>
           </Card>
         </GridItem>

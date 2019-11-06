@@ -13,7 +13,6 @@ import {
 
 // Emojis
 import { emojify } from 'react-emojione';
-import EmojisFavorites from './Emojis/EmojisListFavorites.json';
 import EmojisEmoji from './Emojis/EmojisListEmoji.json';
 import EmojisFace from './Emojis/EmojisListFace.json';
 import EmojisSymbols from './Emojis/EmojisListSymbols.json';
@@ -25,7 +24,7 @@ import EmojisFlags from './Emojis/EmojisListFlags.json';
 import api from '../../services/api';
 
 // Dados necessarios
-import { logout, getPatient, getName } from '../../services/auth';
+import { logout, getPatient, getName, getNameChat } from '../../services/auth';
 
 // Icones
 import { MdMood, MdKeyboardVoice, MdStar, MdInsertEmoticon, MdFace, MdFavoriteBorder, MdPets, MdRestaurant, MdMap } from 'react-icons/md';
@@ -45,6 +44,9 @@ export default function Chat({ history }) {
 
   // Pegar nome do usuario
   const name = getName();
+
+  // Pegar nome do usuario
+  const nameChat = getNameChat();
 
   // Deslogar
   function logOut() {
@@ -71,11 +73,6 @@ export default function Chat({ history }) {
   // Contato selecionado
   const [privy, setPrivy] = useState([]);
 
-  // Setar contato selecionado
-  function contactSelected(contact) {
-    setPrivy(contact);
-  }
-
   //////////////////////////////////////////////////////////////////////////
 
   // Mensagens
@@ -91,17 +88,22 @@ export default function Chat({ history }) {
     query: { patient_id }
   }), [patient_id]);
 
-  // Carregar mensagens antigas
-  useEffect(() => {
-    socket.on('previousMessages', data => {
-      setMessages(data);
-    })
-    selectMessageInput();
-  }, [messages, socket]);
+  async function contactSelected(contact) {
+    setMessages([]);
+    setPrivy(contact);
+    socket.emit('update', contact._id);
+    // alert(JSON.stringify(contact._id));
+  }
+
+  socket.on('previousMessages', data => {
+    setMessages(data);
+  })
 
   // Recebendo mensagens
   socket.on('receivedMessage', data => {
-    setMessages([...messages, data]);
+    if (data.send_id === privy._id && data.receive_id === patient_id) {
+      setMessages([...messages, data]);
+    }
   })
 
   // Quando o usuario aperta Enter
@@ -117,10 +119,11 @@ export default function Chat({ history }) {
     if (messageInput.length) {
 
       let messageObject = {
-        author: "Name",
+        author: name,
         message: messageInput,
         hour: calcHour(),
-        author_id: patient_id
+        send_id: patient_id,
+        receive_id: privy._id
       };
 
       setMessages([...messages, messageObject]);
@@ -175,9 +178,22 @@ export default function Chat({ history }) {
 
   // EMOJIS
 
+
+  // Emojis Favoritos
+  const [emojisFavorite, setEmojisFavorite] = useState([]);
+
+  // Pegar paciente na API
+  useEffect(() => {
+    async function fetchData() {
+      const response = await api.get(`/dashboard/patients/${patient_id}`);
+      setEmojisFavorite(response.data.patient.emojis);
+    }
+    fetchData();
+  }, [patient_id]);
+
   // Opcoes de Emojis
   const [emjBtn, setEmjBtn] = useState([
-    { list: EmojisFavorites, name: "favorites", emojiOption: <MdStar size={29} />, selected: true },
+    { list: [], name: "favorites", emojiOption: <MdStar size={29} />, selected: true },
     { list: EmojisEmoji, name: "emoji", emojiOption: <MdInsertEmoticon size={29} /> },
     { list: EmojisFace, name: "face", emojiOption: <MdFace size={29} /> },
     { list: EmojisSymbols, name: "symbols", emojiOption: <MdFavoriteBorder size={29} /> },
@@ -186,8 +202,27 @@ export default function Chat({ history }) {
     { list: EmojisFlags, name: "flags", emojiOption: <MdMap size={29} /> }
   ])
 
+  // Alterando lista de favoritos
+  async function alterFavoritesEmojis(name) {
+    // alert(JSON.stringify(emojisFavorite)) 
+    let a;
+    
+    emojisFavorite.length
+    ?
+      // await emojisFavorite.map(emj => {
+      //   emj.name === name
+      //   ?
+      //     setEmojisFavorite([...emojisFavorite, {...emj, "name": name, "count": +1 }])
+      //   :
+      //     setEmojisFavorite([...emojisFavorite, { "name": name, "count": 0 }]);
+      // })
+      a = 1
+    :
+      setEmojisFavorite([...emojisFavorite, { "name": name, "count": 0 }]);
+  }
+
   // Lista de emoji selecionada no momento
-  const [emojisEmoji, setEmojisEmoji] = useState(EmojisFavorites);
+  const [emojisEmoji, setEmojisEmoji] = useState(emojisFavorite);
 
   // Caixa de Emojis
   const [boxEmj, setBoxEmj] = useState(false);
@@ -219,7 +254,12 @@ export default function Chat({ history }) {
     });
 
     setEmjBtn(newEmj);
-    setEmojisEmoji(list);
+
+    name === "favorites"
+      ?
+      setEmojisEmoji(emojisFavorite)
+      :
+      setEmojisEmoji(list);
   };
 
   // Selecionar Emoji
@@ -227,6 +267,7 @@ export default function Chat({ history }) {
     const newMessage = `${messageInput}${emj}`;
     setMessageInput(newMessage);
     selectMessageInput();
+    alterFavoritesEmojis(emj);
   }
 
   //////////////////////////////////////////////////////////////////////////
@@ -234,7 +275,6 @@ export default function Chat({ history }) {
   return (
 
     <Container emojisOpen={boxEmj}>
-
       <Header>
 
         <HeaderContent>
@@ -278,7 +318,7 @@ export default function Chat({ history }) {
             </AsidePhoto>
 
             <AsideName>
-              <h2>{name}</h2>
+              <h2>{nameChat ? `${nameChat}` : `${name}`}</h2>
             </AsideName>
 
           </AsideHeader>
@@ -293,17 +333,23 @@ export default function Chat({ history }) {
         <BoxContacts>
 
           {
-            contacts.map(contact => (
-              <BoxContact key={contact._id} onClick={() => contactSelected(contact)}>
+            contacts.map(contact =>
 
-                <ContactPhoto>
-                  <PhotoContact src={imgt} alt="" />
-                </ContactPhoto>
+              contact._id !== patient_id ?
 
-                <ContactName>{contact.name}</ContactName>
+                (
+                  <BoxContact key={contact._id} onClick={() => contactSelected(contact)}>
 
-              </BoxContact>
-            ))
+                    <ContactPhoto>
+                      <PhotoContact src={imgt} alt="" />
+                    </ContactPhoto>
+
+                    <ContactName>{contact.name}</ContactName>
+
+                  </BoxContact>
+                ) :
+                null
+            )
           }
 
         </BoxContacts>
@@ -314,7 +360,7 @@ export default function Chat({ history }) {
         {
           messages.map(msg => (
 
-            msg.author_id === patient_id ?
+            msg.send_id === patient_id ?
 
               <BoxMessage key={msg._id}>
                 <BoxSender>

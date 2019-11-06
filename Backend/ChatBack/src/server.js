@@ -11,29 +11,57 @@ const Message = require('./models/Message')
 const connectedUsers = {};
 
 io.on('connection', async socket => {
-  try{
+  try {
 
-    console.log(socket.id)
+    // console.log(socket.id)
 
     const { patient_id } = socket.handshake.query;
 
     connectedUsers[patient_id] = socket.id;
 
-    const oldMessages = await Message.find()
+    socket.on('update', async data => {
 
-    socket.emit('previousMessages', oldMessages)
+
+      const oldMessages = await Message.find(
+        {
+          $and: [
+
+            {
+              $or: [
+                { "send_id": patient_id },
+                { "send_id": data}
+              ]
+            },
+            
+            {
+              $or: [
+                { "receive_id": patient_id },
+                { "receive_id": data}
+              ]
+            }
+            
+          ]
+
+        }
+      );
+
+      console.log(oldMessages)
+
+
+      socket.emit('previousMessages', oldMessages)
+    })
 
     socket.on('sendMessage', data => {
 
       const message = Message.create(data);
-      
+
       socket.broadcast.emit('receivedMessage', data);
     })
 
-  } catch(err){
+  } catch (err) {
 
   }
 
 })
 
-server.listen(3333);
+server.listen(process.env.PORT || 3333);

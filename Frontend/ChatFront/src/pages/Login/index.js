@@ -22,10 +22,12 @@ export default function Login({ history }) {
     const newToken = response.data.token;
     const newPatient = response.data.patients._id;
     const newName = response.data.patients.name;
+    const newNameChat = response.data.patients.nameChat;
 
     localStorage.setItem('@admin-Token', newToken);
     localStorage.setItem('@admin-Patient', newPatient);
     localStorage.setItem('@admin-Name', newName);
+    localStorage.setItem('@admin-NameChat', newNameChat);
 
     history.push("/");
   }

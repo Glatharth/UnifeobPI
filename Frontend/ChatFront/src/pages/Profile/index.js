@@ -89,6 +89,8 @@ export default function Profile(props) {
   async function handleEdit(e) {
     e.preventDefault();
 
+    localStorage.setItem('@admin-NameChat', data.nameChat);
+
     await api.put(`/dashboard/patients/${data._id}`, data);
 
     props.history.push("/");
@@ -103,12 +105,38 @@ export default function Profile(props) {
           <form className={classes.form}>
             <Avatar alt="img" src={img} className={classes.bigAvatar} />
             <Grid className={classes.center} container spacing={2}>
+
+              <Grid item xs={10} sm={5}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  name="email"
+                  label="E-mail"
+                  type="email"
+                  id="email"
+                  value={`${data.email}`}
+                  onChange={e => setData({ ...data, email: e.target.value })}
+                />
+              </Grid>
+
+              <Grid item xs={10} sm={5}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  name="nameChat"
+                  label="Nome no Chat"
+                  id="nameChat"
+                  value={data.nameChat === undefined ? " " : `${data.nameChat}`}
+                  onChange={e => setData({ ...data, nameChat: e.target.value })}
+                />
+              </Grid>
+
               <Grid item xs={10} sm={5}>
                 <TextField
                   variant="outlined"
                   fullWidth
                   name="name"
-                  label="Name"
+                  label="Nome"
                   type="name"
                   id="name"
                   disabled
@@ -155,32 +183,6 @@ export default function Profile(props) {
                 />
               </Grid>
 
-              <Grid item xs={10} sm={5}>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  name="email"
-                  label="E-mail"
-                  type="email"
-                  id="email"
-                  value={`${data.email}`}
-                  onChange={e => setData({ ...data, email: e.target.value })}
-                />
-              </Grid>
-
-              <Grid item xs={10} sm={5}>
-                <TextField
-                  variant="outlined"
-                  fullWidth
-                  name="password"
-                  label="Senha"
-                  type="text"
-                  id="password"
-                  value={`${data.password}`}
-                  onChange={e => setData({ ...data, password: e.target.value })}
-                />
-              </Grid>
-
               <Grid item xs={10}>
                 <TextareaAutosize
                   className={classes.txtarea}
@@ -198,16 +200,16 @@ export default function Profile(props) {
 
             <Grid item xs={10} className={classes.btns}>
               <Grid item xs={3}>
-              <Link to="/">
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  className={classes.submit}
-                  onClick={e => e.preventDefault}
-                >
-                  Cancelar
+                <Link to="/">
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    onClick={e => e.preventDefault}
+                  >
+                    Cancelar
                 </Button>
                 </Link>
               </Grid>

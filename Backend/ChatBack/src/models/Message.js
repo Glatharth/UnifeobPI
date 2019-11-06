@@ -13,7 +13,11 @@ const MessagesSchema = new mongoose.Schema({
     type: String,
     require: true
   },
-  author_id: {
+  send_id: {
+    type: String,
+    require: true
+  },
+  receive_id: {
     type: String,
     require: true
   },

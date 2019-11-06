@@ -36,7 +36,7 @@ export const Form = styled.form`
 
   width: 100%;
   max-width: 400px;
-  padding: 18px 6% 18px 6%;
+  padding: 18px 3% 18px 3%;
   overflow: hidden;
   background: rgba(256, 256, 256, 0.85);
   border: 2px solid rgba(0,0,0,0.8);

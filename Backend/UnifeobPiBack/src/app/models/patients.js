@@ -8,6 +8,10 @@ const PatientsSchema = new mongoose.Schema({
     type: String
   },
 
+  nameChat: {
+    type: String
+  },
+
   age: {
     type: Number
   },
@@ -50,6 +54,11 @@ const PatientsSchema = new mongoose.Schema({
   color: {
     type: String,
     default: "blue"
+  },
+
+  emojis:{
+    type: Object,
+    default: []
   },
 
   admin: {
